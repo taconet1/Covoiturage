@@ -5,6 +5,7 @@
 <head>
 
   <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
 
 <?php
 		$title = "Bienvenue sur le site de covoiturage de l'IUT.";?>
@@ -15,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
 </head>
 	<body>
-	<div id="header">	
+	<div id="header">
 		<div id="entete">
 			<div class="colonne">
 				<a href="index.php?page=0">
@@ -30,5 +31,3 @@
 				<a href="index.php?page=11">Connexion</a>
 			</div>
 	</div>
-	
-

@@ -3,8 +3,7 @@
 if (!empty($_GET["page"])){
 	$page=$_GET["page"];}
 	else
-	{$page=0;
-	}
+	{$page=0;}
 switch ($page) {
 //
 // Personnes
@@ -63,28 +62,28 @@ case 8:
 //
 case 9:
 	// inclure ici la page proposer trajet
-		
-		include_once('pages/ProposerTrajet.inc.php');		
+
+		include_once('pages/ProposerTrajet.inc.php');
     break;
 case 10:
 	// inclure ici la page rechercher trajet
-			
-		include_once('pages/ChercherTrajet.inc.php');		
-	
+
+		include_once('pages/ChercherTrajet.inc.php');
+
     break;
-    
+
 case 11:
 	// inclure ici la page de connexion
 	include_once('pages/Connexion.inc.php');
     break;
 
 case 12:
-	// inclure ici la page de déconnexion
+	// inclure ici la page de dï¿½connexion
 	include_once('pages/Deconnexion.inc.php');
-    break;    
-    
+    break;
+
 default : 	include_once('pages/accueil.inc.php');
 }
-	
+
 ?>
 </div>
