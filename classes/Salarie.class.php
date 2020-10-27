@@ -1,5 +1,8 @@
 <?php
 class Salarie{
-	//A COMPLETER
-	
+	private $per_num;
+	private $sal_telprof;
+	private $fon_num;
+
 }
+?>

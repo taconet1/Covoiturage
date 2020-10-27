@@ -170,7 +170,7 @@ h1{
 #connect a :visited{
 }
 
-input {
+input, select {
 	background-color: lightgrey;
   border-radius: 8px;
   border: 1px solid #111111;
@@ -187,6 +187,10 @@ input[type=submit] {
 		border: 1px solid grey;
 		padding-left: 30px;
 		padding-right: 30px;
+}
+
+input[type=password]{
+	font-weight: bold;
 }
 
 table {
@@ -215,4 +219,40 @@ select {
 	font-size:12pt;
 	padding: 5px;
 	margin: 3px;
+	
+.left, .right {
+	text-align: left;
+	display: flex;
+}
+
+.right {
+	margin-left: 30px;
+}
+
+#ajouter_personne {
+	display: flex;
+	margin-left: 140px;
+	margin-bottom: 30px;
+	margin-top: 50px;
+}
+
+.etiquette, .champ {
+	display: flex;
+	flex-direction: column;
+}
+
+.etiquette label {
+	margin-top: 11px;
+}
+
+.champ input{
+	margin-top: 3px;
+}
+
+input[type=radio]{
+	box-shadow: none;
+}
+
+td a {
+	font-weight: bold;
 }

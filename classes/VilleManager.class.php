@@ -13,6 +13,13 @@ class VilleManager{
 		return $res;
 	}
 
+	public function getNombreVille(){
+		$req = $this->db->prepare('SELECT COUNT(vil_num) FROM ville');
+		$req->execute();
+		$nombre = $req->fetchColumn();
+		return $nombre;
+	}
+
 	public function getAllVille(){
 		$listeVilles = array();
 
@@ -23,13 +30,6 @@ class VilleManager{
 		}
 		$requete->closeCursor();
 		return $listeVilles;
-	}
-
-	public function getNombreVille(){
-		$req = $this->db->prepare('SELECT COUNT(vil_num) FROM ville');
-		$req->execute();
-		$nombre = $req->fetchColumn();
-		return $nombre;
 	}
 }
 ?>
