@@ -7,25 +7,24 @@ if (empty($_POST["kilometre"])){//premier appel
 ?>
 
 <form name="info" action="index.php?page=5" method="POST">
-    Ville 1 :
-
-    <select name="ville1">
-      <?php
-      foreach ($villes as $ville){ ?>
-      <option value="<?php echo $ville['vil_num'];?>"> <?php echo $ville['vil_nom'] ?> </option>
-      <?php } ?>
-
-    </select>
-    Ville 2 :
-    <select name="ville2">
+    <label for="ville1">Ville 1 : </label>
+    <select id="ville1" name="ville1">
       <?php
       foreach ($villes as $ville){ ?>
       <option value="<?php echo $ville['vil_num'];?>"> <?php echo $ville['vil_nom'] ?> </option>
       <?php } ?>
     </select>
 
-    Nombres de kilometre(s) :
-    <input type="number" name="kilometre" >
+    <label for="ville2">Ville 2 : </label>
+    <select id="ville2" name="ville2">
+      <?php
+      foreach ($villes as $ville){ ?>
+      <option value="<?php echo $ville['vil_num'];?>"> <?php echo $ville['vil_nom'] ?> </option>
+      <?php } ?>
+    </select>
+
+    <label for="kilometre">Nombres de kilometre(s) : </label>
+    <input type="number" id="kilometre" name="kilometre" ><br><br>
     <input type="submit" value="Valider">
 
 </form>
