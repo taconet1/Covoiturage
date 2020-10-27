@@ -9,9 +9,11 @@
   <?php }
   else {?>
     <form action="#" method="post">
-      <img src="image/valid.png" alt="Valid">
-      La ville "<span><?php
-      $villeManager->ajouter($_POST["ville_nom"]);
-      echo $_POST["ville_nom"]; ?></span>" a été ajoutée
+      <?php if ($villeManager->ajouter($_POST["ville_nom"])!=0): ?>
+        <img src="image/valid.png" alt="Valid">
+        La ville "<span><?php
+        $villeManager->ajouter($_POST["ville_nom"]);
+        echo $_POST["ville_nom"]; ?></span>" a été ajoutée
+      <?php endif; ?>
     </form>
   <?php }?>

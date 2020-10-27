@@ -11,7 +11,11 @@ $listePersonnes = $personneManager->getAllPersonne();?>
   <tbody>
 <?php foreach ($listePersonnes as $personne) {?>
     <tr>
-      <td><a href="#" name="id_personne" method="post"><?php echo $personne->getPerNum(); ?></a></td>
+      <td>
+        <a href="#" name="id_personne" method="post">
+          <?php echo $personne->getPerNum(); ?>
+        </a>
+      </td>
       <td><?php echo $personne->getPerNom(); ?></td>
       <td><?php echo $personne->getPerPrenom(); ?></td>
     </tr>

@@ -6,15 +6,15 @@ class PersonneManager{
 		$this->db = $db;
 	}
 
-	public function ajouter($nom, $prenom, $tel, $mail, $login, $pwd){
-		$req=$this->db->prepare('INSERT INTO personne(per_nom,per_prenom,per_tel,per_mail,per_login,per_pwd) VALUES(:per_nom,:per_prenom,:per_tel,:per_mail,:per_login,:per_pwd)');
-		$req->bindValue(':pre_nom',$nom);
-		$req->bindValue(':pre_prenom',$prenom);
-		$req->bindValue(':pre_tel',$tel);
-		$req->bindValue(':pre_mail',$mail);
-		$req->bindValue(':pre_login',$login);
-		$req->bindValue(':pre_pwd',$pwd);
-
+	public function ajouter($personne){
+		$req=$this->db->prepare('INSERT INTO personne(per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd)
+															VALUES(:per_nom, :per_prenom, :per_tel, :per_mail, :per_login, :per_pwd)');
+		$req->bindValue(':per_nom',$personne->getPerNom());
+		$req->bindValue(':per_prenom',$personne->getPerPrenom());
+		$req->bindValue(':per_tel',$personne->getPerTel());
+		$req->bindValue(':per_mail',$personne->getPerMail());
+		$req->bindValue(':per_login',$personne->getPerLogin());
+		$req->bindValue(':per_pwd',$personne->getPerPwd());
 		return $req->execute();
 	}
 

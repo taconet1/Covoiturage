@@ -1,11 +1,6 @@
 <h1> Liste des parcours proposés</h1>
 
 <?php
-$pdo = new Mypdo();
-
-$parcoursManager = new ParcoursManager($pdo);
-
-
 $total=$parcoursManager->nombre();
 if ($total == 1) {?>
   Actuellement <?php echo $total?> parcours est enregistré<br><br>

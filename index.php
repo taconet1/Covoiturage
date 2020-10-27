@@ -5,6 +5,7 @@ require_once("include/header.inc.php");
 
 $pdo=new Mypdo();
 $villeManager=new VilleManager($pdo);
+$parcoursManager=new ParcoursManager($pdo);
 $personneManager=new PersonneManager($pdo);
 
 ?>

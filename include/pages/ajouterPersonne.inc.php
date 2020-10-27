@@ -4,26 +4,26 @@
     <div id="ajouter_personne">
       <div class="left">
         <div class="etiquette">
-            <label for="nom">Nom : </label>
-            <label for="telephone">Téléphone : </label>
-            <label for="login">Login : </label>
+            <label for="per_nom">Nom : </label>
+            <label for="per_tel">Téléphone : </label>
+            <label for="per_login">Login : </label>
         </div>
         <div class="champ">
-          <input type="text" id="nom" name="nom" required>
-          <input type="tel" id="telephone" name="telephone" maxlength="10" required>
-          <input type="text" id="login" name="login" required>
+          <input type="text" id="per_nom" name="per_nom" required>
+          <input type="tel" id="per_tel" name="per_tel" maxlength="10" required>
+          <input type="text" id="per_login" name="per_login" required>
         </div>
       </div>
       <div class="right">
         <div class="etiquette">
-          <label for="prenom">Prénom : </label>
-          <label for="email">Mail : </label>
-          <label for="password">Password : </label>
+          <label for="per_prenom">Prénom : </label>
+          <label for="per_mail">Mail : </label>
+          <label for="per_pwd">Password : </label>
         </div>
         <div class="champ">
-          <input type="text" id="prenom" name="prenom" required>
-          <input type="email" id="email" name="email" required>
-          <input type="password" id="password" name="password" required>
+          <input type="text" id="per_prenom" name="per_prenom" required>
+          <input type="email" id="per_mail" name="per_mail" required>
+          <input type="password" id="per_pwd" name="per_pwd" required>
         </div>
       </div>
     </div>
@@ -37,8 +37,8 @@
 <?php endif; ?>
 
 <?php if (!empty($_POST["etudiant"]) || !empty($_POST["personnel"])):
-  $personneManager->ajouter($_POST["nom"], $_POST["prenom"], $_POST["telephone"], $_POST["email"], $_POST["login"], $_POST["password"]);
-  
+  $personne=new Personne($_POST);
+  $personneManager->ajouter($personne);
 ?>
 
 <?php endif; ?>
@@ -85,5 +85,3 @@
     <input type="submit" value="Valider">
   </form>
 <?php endif; ?>
-
-lastinsertid()

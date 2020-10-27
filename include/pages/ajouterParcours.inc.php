@@ -1,7 +1,5 @@
 <h1>Ajouter un parcours </h1>
 <?php
-$pdo=new Mypdo();
-$parcoursManager = new ParcoursManager($pdo);
 $villes=$parcoursManager->listerVille();
 if (empty($_POST["kilometre"])){//premier appel
 ?>
@@ -29,10 +27,7 @@ if (empty($_POST["kilometre"])){//premier appel
 
 </form>
 <?php
-} else
-{
-
-
+} else {
 $parcours = new Parcours($_POST);
 $retour=$parcoursManager->add($parcours);
 //on appelle la méthode add en lui passant un objet client
