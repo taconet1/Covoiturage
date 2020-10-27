@@ -7,6 +7,10 @@ $pdo=new Mypdo();
 $villeManager=new VilleManager($pdo);
 $parcoursManager=new ParcoursManager($pdo);
 $personneManager=new PersonneManager($pdo);
+$divisionManager=new DivisionManager($pdo);
+$departementManager=new DepartementManager($pdo);
+$etudiantManager=new EtudiantManager($pdo);
+$salarieManager=new SalarieManager($pdo);
 
 ?>
 <div id="corps">
