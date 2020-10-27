@@ -37,9 +37,10 @@ $parcours = new Parcours($_POST);
 $retour=$parcoursManager->add($parcours);
 //on appelle la méthode add en lui passant un objet client
 
-if ($retour !=0) //retour contient le nombre de lignes affectées
- echo "insertion effectuée" ;
- else
- echo "problème";
+if ($retour !=0){ //retour contient le nombre de lignes affectées?>
+  <img src="image/valid.png" alt="Valid"> Le parcours a été ajoutée
+<?php
+} else
+ echo "Problème";
 }
 ?>
