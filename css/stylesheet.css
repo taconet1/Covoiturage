@@ -205,3 +205,14 @@ tr, th {
 	padding-left: 75px;
 	padding-right: 75px;
 }
+
+select {
+    background-color: lightgrey;
+  border-radius: 8px;
+  border: 1px solid #111111;
+  color: #222222;
+  box-shadow: 0 0 3px #000000 inset;
+	font-size:12pt;
+	padding: 5px;
+	margin: 3px;
+}
