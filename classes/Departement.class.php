@@ -4,7 +4,7 @@ class Departement{
   private $dep_nom;
   private $vil_num;
 
-  public function __construct($donnees){
+  public function __construct($donnees=array()){
     if (!empty($donnees)) {
       $this->affecte($donnees);
     }

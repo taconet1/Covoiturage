@@ -10,7 +10,7 @@
         </div>
         <div class="champ">
           <input type="text" id="per_nom" name="per_nom" required>
-          <input type="tel" id="per_tel" name="per_tel" maxlength="10" required>
+          <input type="tel" id="per_tel" name="per_tel" minlength="10" maxlength="10" required>
           <input type="text" id="per_login" name="per_login" required>
         </div>
       </div>
@@ -36,31 +36,22 @@
   </form>
 <?php endif; ?>
 
-<?php if (!empty($_POST["etudiant"]) || !empty($_POST["personnel"])):
-  $personne=new Personne($_POST);
-  $personneManager->ajouter($personne);
-?>
-
-<?php endif; ?>
-
 <?php if (!empty($_POST["etudiant"])): ?>
   <h1>Ajouter un étudiant</h1>
-  <form class="" action="index.html" method="post">
+  <form action="#" method="post">
     <label for="annee">Année : </label>
     <select id="annee" name="annee">
-      <option value="1">Année 1</option>
-      <option value="2">Année 2</option>
-      <option value="3">Année Spéciale</option>
-      <option value="4">Licence Professionnelle</option>
+      <?php $divisions=$divisionManager->getAllDivision();
+      foreach ($divisions as $division ): ?>
+        <option value="<?php echo $division->getDivNum(); ?>"><?php echo $division->getDivNom(); ?></option>
+      <?php endforeach; ?>
     </select><br><br>
     <label for="departement">Département : </label>
     <select id="departement" name="departement">
-      <option value="1">Informatique</option>
-      <option value="2">GEA (Brive)</option>
-      <option value="3">GEA (Limoges)</option>
-      <option value="4">SRC</option>
-      <option value="5">HSE</option>
-      <option value="6">Génie Civil</option>
+      <?php $departements=$departementManager->getAllDepartement();
+      foreach ($departements as $departement): ?>
+        <option value="<?php echo $departement->getDepNum(); ?>"><?php echo $departement->getDepNom();?> (<?php echo $departementManager->getVilById($departement->getVilNum()); ?>)</option>
+      <?php endforeach; ?>
     </select><br><br>
     <input type="submit" value="Valider">
   </form>
@@ -68,9 +59,9 @@
 
 <?php if (!empty($_POST["personnel"])): ?>
   <h1>Ajouter un salarié</h1>
-  <form class="" action="index.html" method="post">
+  <form action="#" method="post">
     <label for="telephone">Téléphone professionnel : </label>
-    <input type="tel" name="telephone" maxlength="14"><br><br>
+    <input type="tel" name="telephone" minlength="10" maxlength="10"><br><br>
     <label for="fonction">Fonction : </label>
     <select id="fonction" name="fonction">
       <option value="1">Directeur</option>
@@ -85,3 +76,17 @@
     <input type="submit" value="Valider">
   </form>
 <?php endif; ?>
+
+<?php
+  if (!empty($_POST["etudiant"]) || !empty($_POST["personnel"])){
+    $personne=new Personne($_POST);
+    $personneManager->ajouter($personne);
+  }
+
+  if (!empty($_POST["departement"]) && !empty($_POST["annee"])) {
+    $infos=array("per_num"=>$personneManager->getLastId(),"dep_num"=>$_POST["departement"],"div_num"=>$_POST["annee"]);
+    $etudiant=new Etudiant($infos);
+    $etudiantManager->ajouter($etudiant);
+  }
+
+?>

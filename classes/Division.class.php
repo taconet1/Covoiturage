@@ -1,9 +1,9 @@
 <?php
 class Division{
-	private div_num;
-	private div_nom;
+	private $div_num;
+	private $div_nom;
 
-	public function __construct($donnees){
+	public function __construct($donnees = array()){
 		if (!empty($donnees)) {
 			$this->affecte($donnees);
 		}

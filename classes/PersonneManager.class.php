@@ -3,7 +3,7 @@ class PersonneManager{
 	private $db;
 
 	public function __construct($db){
-		$this->db = $db;
+		$this->db=$db;
 	}
 
 	public function ajouter($personne){
@@ -26,7 +26,6 @@ class PersonneManager{
 
 	public function getAllPersonne(){
 		$listePersonnes = array();
-
 		$req=$this->db->prepare('SELECT per_num,per_nom,per_prenom FROM personne');
 		$req->execute();
 		while ($personne = $req->fetch(PDO::FETCH_OBJ)) {
@@ -35,6 +34,12 @@ class PersonneManager{
 		$req->closeCursor();
 
 		return $listePersonnes;
+	}
+
+	public function getLastId(){
+		$req=$this->db->prepare('SELECT MAX(per_num) AS id FROM personne');
+		$req->execute();
+		return $req->fetch()['id'];
 	}
 
 }

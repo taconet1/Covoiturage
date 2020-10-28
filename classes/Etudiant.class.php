@@ -4,7 +4,7 @@ class Etudiant{
 	private $dep_num;
 	private $div_num;
 
-	public function __construct($donnees){
+	public function __construct($donnees=array()){
 		if (!empty($donnees)) {
 			$this->affecte($donnees);
 		}
