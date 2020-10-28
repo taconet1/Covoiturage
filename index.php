@@ -4,13 +4,16 @@ require_once("include/autoLoad.inc.php");
 require_once("include/header.inc.php");
 
 $pdo=new Mypdo();
-$villeManager=new VilleManager($pdo);
+
+$departementManager=new DepartementManager($pdo);
+$divisionManager=new DivisionManager($pdo);
+$etudiantManager=new EtudiantManager($pdo);
+$fonctionManager=new FonctionManager($pdo);
 $parcoursManager=new ParcoursManager($pdo);
 $personneManager=new PersonneManager($pdo);
-$divisionManager=new DivisionManager($pdo);
-$departementManager=new DepartementManager($pdo);
-$etudiantManager=new EtudiantManager($pdo);
+$proposeManager=new ProposeManager($pdo);
 $salarieManager=new SalarieManager($pdo);
+$villeManager=new VilleManager($pdo);
 
 ?>
 <div id="corps">
