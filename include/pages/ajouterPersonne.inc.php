@@ -1,4 +1,4 @@
-<?php if (empty($_POST["etudiant"]) && empty($_POST["personnel"])): ?>
+<?php if (empty($_POST["personne"])): ?>
   <h1>Ajouter une personne</h1>
   <form action="#" method="post">
     <div id="ajouter_personne">
@@ -27,18 +27,18 @@
         </div>
       </div>
     </div>
-    <label for="categorie">Catégorie : </label>
-    <input type="radio" id="etudiant" name="etudiant">
+    <label for="personne">Catégorie : </label>
+    <input type="radio" id="etudiant" name="personne" value="etudiant">
     <label for="etudiant">Etudiant</label>
-    <input type="radio" id="personnel" name="personnel">
+    <input type="radio" id="personnel" name="personne" value="personnel">
     <label for="personnel">Personnel</label><br><br>
     <input type="submit" value="Valider">
   </form>
 <?php endif; ?>
 
-<?php if (!empty($_POST["etudiant"])): ?>
+<?php if (!empty($_POST["personne"]) && $_POST["personne"]=="etudiant"): ?>
   <h1>Ajouter un étudiant</h1>
-  <form action="#" method="post">
+  <form action="index.php?page=1" method="post">
     <label for="annee">Année : </label>
     <select id="annee" name="annee">
       <?php $divisions=$divisionManager->getAllDivision();
@@ -57,36 +57,32 @@
   </form>
 <?php endif; ?>
 
-<?php if (!empty($_POST["personnel"])): ?>
+<?php if (!empty($_POST["personne"]) && $_POST["personne"]=="personnel"): ?>
   <h1>Ajouter un salarié</h1>
-  <form action="#" method="post">
-    <label for="telephone">Téléphone professionnel : </label>
-    <input type="tel" name="telephone" minlength="10" maxlength="10"><br><br>
+  <form action="index.php?page=1" method="post">
+    <label for="telpro">Téléphone professionnel : </label>
+    <input type="tel" name="telpro" minlength="10" maxlength="10"><br><br>
     <label for="fonction">Fonction : </label>
     <select id="fonction" name="fonction">
       <option value="1">Directeur</option>
-      <option value="2">Chef de département</option>
-      <option value="3">Technicien</option>
-      <option value="4">Secrétaire</option>
-      <option value="5">Ingénieur</option>
-      <option value="6">Imprimeur</option>
-      <option value="7">Enseignant</option>
-      <option value="8">Chercheur</option>
     </select><br><br>
     <input type="submit" value="Valider">
   </form>
 <?php endif; ?>
 
 <?php
-  if (!empty($_POST["etudiant"]) || !empty($_POST["personnel"])){
+  if (!empty($_POST["personne"])){
     $personne=new Personne($_POST);
     $personneManager->ajouter($personne);
-  }
 
-  if (!empty($_POST["departement"]) && !empty($_POST["annee"])) {
-    $infos=array("per_num"=>$personneManager->getLastId(),"dep_num"=>$_POST["departement"],"div_num"=>$_POST["annee"]);
-    $etudiant=new Etudiant($infos);
-    $etudiantManager->ajouter($etudiant);
-  }
+    if (!empty($_POST["departement"]) && !empty($_POST["annee"])) {
+      $infos=array("per_num"=>$personneManager->getLastId(),"dep_num"=>$_POST["departement"],"div_num"=>$_POST["annee"]);
+      $etudiant=new Etudiant($infos);
+      $etudiantManager->ajouter($etudiant);
+    }
 
+    if (!empty($_POST["telpro"]) && !empty($_POST["fonction"])) {
+
+    }
+  }
 ?>

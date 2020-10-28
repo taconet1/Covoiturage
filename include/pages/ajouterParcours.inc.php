@@ -1,6 +1,6 @@
 <h1>Ajouter un parcours </h1>
 <?php
-$villes=$parcoursManager->listerVille();
+$villes=$villeManager->getAllVille();
 if (empty($_POST["kilometre"])){//premier appel
 ?>
 
@@ -9,7 +9,7 @@ if (empty($_POST["kilometre"])){//premier appel
     <select id="ville1" name="ville1">
       <?php
       foreach ($villes as $ville){ ?>
-      <option value="<?php echo $ville['vil_num'];?>"> <?php echo $ville['vil_nom'] ?> </option>
+      <option value="<?php echo $ville->getVilNum();?>"> <?php echo $ville->getVilNom() ?> </option>
       <?php } ?>
     </select>
 
@@ -17,7 +17,7 @@ if (empty($_POST["kilometre"])){//premier appel
     <select id="ville2" name="ville2">
       <?php
       foreach ($villes as $ville){ ?>
-      <option value="<?php echo $ville['vil_num'];?>"> <?php echo $ville['vil_nom'] ?> </option>
+        <option value="<?php echo $ville->getVilNum();?>"> <?php echo $ville->getVilNom() ?> </option>
       <?php } ?>
     </select>
 

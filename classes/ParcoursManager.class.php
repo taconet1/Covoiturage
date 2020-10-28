@@ -26,17 +26,7 @@ class ParcoursManager{
 
 		return $total;
 	}
-	public function listerVille(){
-		$listeVille=array();
-		$sql='SELECT vil_num, vil_nom FROM ville';
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
 
-		while ($ville = $requete->fetch())
-	    {  $listeVille[] = $ville;}
-			$requete->closeCursor();
-			return $listeVille;
-	}
 	public function getAllParcours(){
 		$listeParcours = array();
 		$sql = 'SELECT par_num, v1.vil_nom as ville1, v2.vil_nom as ville2, par_km FROM parcours p JOIN ville v1 ON p.vil_num1=v1.vil_num JOIN ville v2 ON p.vil_num2= v2.vil_num';
@@ -48,6 +38,4 @@ class ParcoursManager{
 			$requete->closeCursor();
 			return $listeParcours;
 		}
-
-
 }
