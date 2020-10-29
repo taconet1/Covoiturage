@@ -31,5 +31,11 @@ class VilleManager{
 		$requete->closeCursor();
 		return $listeVilles;
 	}
+
+	public function getVil($id){
+		$req=$this->db->prepare("SELECT vil_nom FROM ville WHERE vil_num=$id");
+		$req->execute();
+		return $req->fetchColumn();
+	}
 }
 ?>

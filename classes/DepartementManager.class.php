@@ -14,23 +14,19 @@ class DepartementManager{
 		while ($departement = $req->fetch(PDO::FETCH_OBJ)) {
 			$liste[]=new Departement($departement);
 		}
-		$req->closeCursor();
-
 		return $liste;
 	}
 
-	public function getVilById($id){
-		$req=$this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num='.$id);
+	public function getDepVil($id){
+		$req=$this->db->prepare("SELECT vil_nom FROM ville v JOIN departement d ON v.vil_num=d.vil_num WHERE dep_num=$id");
 		$req->execute();
-		$ville=$req->fetch()['vil_nom'];
-		return $ville;
+		return $req->fetchColumn();
 	}
 
 	public function getDep($id){
-		$req=$this->db->prepare('SELECT dep_nom FROM departement WHERE dep_num='.$id);
+		$req=$this->db->prepare("SELECT dep_nom FROM departement WHERE dep_num=$id");
 		$req->execute();
-		$dep=$req->fetch()['dep_nom'];
-		return $dep;
+		return $req->fetchColumn();
 	}
 }
 ?>

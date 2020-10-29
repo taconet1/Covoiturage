@@ -1,9 +1,7 @@
 <?php if (empty($_POST["personne"])): ?>
 
   <h1>Ajouter une personne</h1>
-
   <form action="#" method="post">
-
     <div id="ajouter_personne">
 
       <div class="left">
@@ -34,7 +32,7 @@
     </div>
 
     <label for="personne">Catégorie : </label>
-    <input type="radio" id="etudiant" name="personne" value="etudiant">
+    <input type="radio" id="etudiant" name="personne" value="etudiant" required>
     <label for="etudiant">Etudiant</label>
     <input type="radio" id="personnel" name="personne" value="personnel">
     <label for="personnel">Personnel</label><br><br>
@@ -59,7 +57,7 @@
     <select id="departement" name="departement">
       <?php $departements=$departementManager->getAllDepartement();
       foreach ($departements as $departement): ?>
-        <option value="<?php echo $departement->getDepNum(); ?>"><?php echo $departement->getDepNom();?> (<?php echo $departementManager->getVilById($departement->getVilNum()); ?>)</option>
+        <option value="<?php echo $departement->getDepNum(); ?>"><?php echo $departement->getDepNom();?> (<?php echo $villeManager->getVil($departement->getVilNum()); ?>)</option>
       <?php endforeach; ?>
     </select><br><br>
     <input type="submit" value="Valider">
@@ -88,17 +86,17 @@
   if (!empty($_POST["personne"])){
     $personne=new Personne($_POST);
     $personneManager->ajouter($personne);
+  }
 
-    if (!empty($_POST["departement"]) && !empty($_POST["annee"])) {
-      $infos=array("per_num"=>$pdo->lastInsertId(),"dep_num"=>$_POST["departement"],"div_num"=>$_POST["annee"]);
-      $etudiant=new Etudiant($infos);
-      $etudiantManager->ajouter($etudiant);
-    }
+  if (!empty($_POST["departement"]) && !empty($_POST["annee"])) {
+    $infos=array("per_num"=>$pdo->lastInsertId(),"dep_num"=>$_POST["departement"],"div_num"=>$_POST["annee"]);
+    $etudiant=new Etudiant($infos);
+    $etudiantManager->ajouter($etudiant);
+  }
 
-    if (!empty($_POST["telpro"]) && !empty($_POST["fonction"])) {
-      $infos=array("per_num"=>$pdo->lastInsertId(),"dep_num"=>$_POST["telpro"],"div_num"=>$_POST["fonction"]);
-      $salarie=new Salarie($infos);
-      $salarieManager->ajouter($salarie);
-    }
+  if (!empty($_POST["telpro"]) && !empty($_POST["fonction"])) {
+    $infos=array("per_num"=>$pdo->lastInsertId(),"dep_num"=>$_POST["telpro"],"div_num"=>$_POST["fonction"]);
+    $salarie=new Salarie($infos);
+    $salarieManager->ajouter($salarie);
   }
 ?>
