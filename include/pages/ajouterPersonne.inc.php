@@ -72,7 +72,7 @@
 
   <form action="index.php?page=1" method="post">
     <label for="telpro">Téléphone professionnel : </label>
-    <input type="tel" name="telpro" minlength="10" maxlength="10"><br><br>
+    <input type="tel" name="telpro" minlength="10" maxlength="10" required><br><br>
     <label for="fonction">Fonction : </label>
     <select id="fonction" name="fonction">
       <?php $fonctions=$fonctionManager->getAllFonction();
@@ -96,7 +96,9 @@
     }
 
     if (!empty($_POST["telpro"]) && !empty($_POST["fonction"])) {
-
+      $infos=array("per_num"=>$pdo->lastInsertId(),"dep_num"=>$_POST["telpro"],"div_num"=>$_POST["fonction"]);
+      $salarie=new Salarie($infos);
+      $salarieManager->ajouter($salarie);
     }
   }
 ?>
