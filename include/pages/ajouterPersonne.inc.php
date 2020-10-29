@@ -1,7 +1,11 @@
 <?php if (empty($_POST["personne"])): ?>
+
   <h1>Ajouter une personne</h1>
+
   <form action="#" method="post">
+
     <div id="ajouter_personne">
+
       <div class="left">
         <div class="etiquette">
             <label for="per_nom">Nom : </label>
@@ -14,6 +18,7 @@
           <input type="text" id="per_login" name="per_login" required>
         </div>
       </div>
+
       <div class="right">
         <div class="etiquette">
           <label for="per_prenom">Prénom : </label>
@@ -27,6 +32,7 @@
         </div>
       </div>
     </div>
+
     <label for="personne">Catégorie : </label>
     <input type="radio" id="etudiant" name="personne" value="etudiant">
     <label for="etudiant">Etudiant</label>
@@ -37,7 +43,9 @@
 <?php endif; ?>
 
 <?php if (!empty($_POST["personne"]) && $_POST["personne"]=="etudiant"): ?>
+
   <h1>Ajouter un étudiant</h1>
+
   <form action="index.php?page=1" method="post">
     <label for="annee">Année : </label>
     <select id="annee" name="annee">
@@ -46,6 +54,7 @@
         <option value="<?php echo $division->getDivNum(); ?>"><?php echo $division->getDivNom(); ?></option>
       <?php endforeach; ?>
     </select><br><br>
+
     <label for="departement">Département : </label>
     <select id="departement" name="departement">
       <?php $departements=$departementManager->getAllDepartement();
@@ -58,13 +67,18 @@
 <?php endif; ?>
 
 <?php if (!empty($_POST["personne"]) && $_POST["personne"]=="personnel"): ?>
+
   <h1>Ajouter un salarié</h1>
+
   <form action="index.php?page=1" method="post">
     <label for="telpro">Téléphone professionnel : </label>
     <input type="tel" name="telpro" minlength="10" maxlength="10"><br><br>
     <label for="fonction">Fonction : </label>
     <select id="fonction" name="fonction">
-      <option value="1">Directeur</option>
+      <?php $fonctions=$fonctionManager->getAllFonction();
+      foreach ($fonctions as $fonction): ?>
+          <option value="<?php echo $fonction->getFonNum(); ?>"><?php echo $fonction->getFonLibelle(); ?></option>
+      <?php endforeach; ?>
     </select><br><br>
     <input type="submit" value="Valider">
   </form>
@@ -76,7 +90,7 @@
     $personneManager->ajouter($personne);
 
     if (!empty($_POST["departement"]) && !empty($_POST["annee"])) {
-      $infos=array("per_num"=>$personneManager->getLastId(),"dep_num"=>$_POST["departement"],"div_num"=>$_POST["annee"]);
+      $infos=array("per_num"=>$pdo->lastInsertId(),"dep_num"=>$_POST["departement"],"div_num"=>$_POST["annee"]);
       $etudiant=new Etudiant($infos);
       $etudiantManager->ajouter($etudiant);
     }

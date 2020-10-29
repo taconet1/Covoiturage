@@ -35,11 +35,4 @@ class PersonneManager{
 
 		return $listePersonnes;
 	}
-
-	public function getLastId(){
-		$req=$this->db->prepare('SELECT MAX(per_num) AS id FROM personne');
-		$req->execute();
-		return $req->fetch()['id'];
-	}
-
 }
