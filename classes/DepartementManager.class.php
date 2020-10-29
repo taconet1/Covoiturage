@@ -25,5 +25,12 @@ class DepartementManager{
 		$ville=$req->fetch()['vil_nom'];
 		return $ville;
 	}
+
+	public function getDep($id){
+		$req=$this->db->prepare('SELECT dep_nom FROM departement WHERE dep_num='.$id);
+		$req->execute();
+		$dep=$req->fetch()['dep_nom'];
+		return $dep;
+	}
 }
 ?>

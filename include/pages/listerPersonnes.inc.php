@@ -1,7 +1,10 @@
 <h1>Liste des personnes enregistrées</h1>
 Actuellement <?php echo $personneManager->getNombrePersonne(); ?> personnes enregistrées<br><br>
+
 <?php
 $listePersonnes = $personneManager->getAllPersonne();?>
+<?php $etudiant=$personneManager->getEtudiant(106);
+echo $etudiant->getDepNum(); ?>
 <table>
   <thead>
     <th>Numéro</th>
@@ -9,6 +12,7 @@ $listePersonnes = $personneManager->getAllPersonne();?>
     <th>Prénom</th>
   </thead>
   <tbody>
+
 <?php foreach ($listePersonnes as $personne) {?>
     <tr>
       <td>
@@ -24,5 +28,6 @@ $listePersonnes = $personneManager->getAllPersonne();?>
 </table>
 <?php if (!empty($_POST["id_personne"])): ?>
   <h1>Détail sur l'étudiant </h1>
+
 
 <?php endif; ?>

@@ -32,7 +32,13 @@ class PersonneManager{
 			$listePersonnes[]=new Personne($personne);
 		}
 		$req->closeCursor();
-
 		return $listePersonnes;
+	}
+
+	public function getEtudiant($id){
+		$req=$this->db->prepare('SELECT per_prenom,per_mail,per_tel,dep_num FROM personne p JOIN etudiant e ON p.per_num=e.per_num WHERE e.per_num='.$id);
+		$req->execute();
+		$etudiant=new Etudiant($req->fetch(PDO::FETCH_OBJ));
+		return $etudiant;
 	}
 }

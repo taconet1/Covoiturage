@@ -1,12 +1,12 @@
 <?php
 class Personne{
-	private $per_num;
-	private $per_nom;
-	private $per_prenom;
-	private $per_tel;
-	private $per_mail;
-	private $per_login;
-	private $per_pwd;
+	protected $per_num;
+	protected $per_nom;
+	protected $per_prenom;
+	protected $per_tel;
+	protected $per_mail;
+	protected $per_login;
+	protected $per_pwd;
 
 	public function __construct($donnees=array()){
 		if (!empty($donnees)) {
