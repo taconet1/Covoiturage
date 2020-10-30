@@ -30,26 +30,50 @@
 <?php endif; ?>
 
 
-<?php if (!empty($_POST["id"])):
-  $etudiant=$personneManager->getEtudiant($_POST["id"]); ?>
-  <h1>Détail sur l'étudiant <?php echo $etudiant->getPerNom(); ?></h1>
-  <table>
-    <thead>
-      <th>Prénom</th>
-      <th>Mail</th>
-      <th>Tel</th>
-      <th>Département</th>
-      <th>Ville</th>
-    </thead>
+<?php if (!empty($_POST["id"])):?>
+  <?php if ($personneManager->getEtudiant($_POST["id"])): $personne=$personneManager->getEtudiant($_POST["id"]);?>
+    <h1>Détail sur l'étudiant <?php echo $personne->getPerNom(); ?></h1>
+    <table>
+      <thead>
+        <th>Prénom</th>
+        <th>Mail</th>
+        <th>Tel</th>
+        <th>Département</th>
+        <th>Ville</th>
+      </thead>
 
-    <tbody>
-      <tr>
-        <td><?php echo $etudiant->getPerPrenom(); ?></td>
-        <td><?php echo $etudiant->getPerMail(); ?></td>
-        <td><?php echo $etudiant->getPerTel(); ?></td>
-        <td><?php echo $departementManager->getDep($etudiant->getDepNum()); ?></td>
-        <td><?php echo $departementManager->getDepVil($etudiant->getDepNum()); ?></td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr>
+          <td><?php echo $personne->getPerPrenom(); ?></td>
+          <td><?php echo $personne->getPerMail(); ?></td>
+          <td><?php echo $personne->getPerTel(); ?></td>
+          <td><?php echo $departementManager->getDep($personne->getDepNum()); ?></td>
+          <td><?php echo $departementManager->getDepVil($personne->getDepNum()); ?></td>
+        </tr>
+      </tbody>
+    </table>
+
+  <?php else: $personne=$personneManager->getSalarie($_POST["id"]);?>
+    <h1>Détail sur le salarié <?php echo $personne->getPerNom(); ?></h1>
+    <table>
+      <thead>
+        <th>Prénom</th>
+        <th>Mail</th>
+        <th>Tel</th>
+        <th>Département</th>
+        <th>Ville</th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><?php echo $personne->getPerPrenom(); ?></td>
+          <td><?php echo $personne->getPerMail(); ?></td>
+          <td><?php echo $personne->getPerTel(); ?></td>
+          <td><?php echo $personne->getTelProf(); ?></td>
+          <td><?php echo $salarieManager->getSalFon($personne->getFonNum()); ?></td>
+        </tr>
+      </tbody>
+    </table>
+  <?php endif; ?>
+
 <?php endif; ?>

@@ -36,8 +36,15 @@ class PersonneManager{
 
 	public function getEtudiant($id){
 		$req=$this->db->prepare("SELECT per_nom,per_prenom,per_mail,per_tel,dep_num
-														 FROM personne p JOIN etudiant e ON p.per_num=e.per_num WHERE p.per_num=$id");
+														 FROM personne p JOIN etudiant e ON p.per_num=e.per_num WHERE e.per_num=$id");
 		$req->execute();
 		return new Etudiant($req->fetch(PDO::FETCH_OBJ));
+	}
+
+	public function getSalarie($id){
+		$req=$this->db->prepare("SELECT per_nom,per_prenom,per_mail,per_tel,sal_telprof,fon_num
+														 FROM personne p JOIN salarie s ON p.per_num=s.pernum WHERE s.per_num=$id");
+		$req->execute();
+		return new Salarie($req->fetch(PDO::FETCH_OBJ));
 	}
 }

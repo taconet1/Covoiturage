@@ -11,7 +11,7 @@ class EtudiantManager{
 		$req->bindValue(':per_num',$etudiant->getPerNum());
 		$req->bindValue(':dep_num',$etudiant->getDepNum());
 		$req->bindValue(':div_num',$etudiant->getDivNum());
-		return $req->execute();;
+		return $req->execute();
 	}
 }
 ?>
