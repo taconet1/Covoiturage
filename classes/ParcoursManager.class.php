@@ -17,13 +17,13 @@ class ParcoursManager{
 
 						return $retour;
 	}
-	public function nombre(){
 
+	public function nombre(){
 		$sql = 'SELECT count(par_num) FROM parcours';
 		$requete = $this->db->prepare($sql);
     $requete->execute();
 		$total = $requete -> fetchColumn();
-
+		$requete->closeCursor();
 		return $total;
 	}
 

@@ -1,4 +1,4 @@
-<?php if (empty($_POST["id"])): ?>
+<?php if (!isset($_POST["id_personne"])): ?>
   <h1>Liste des personnes enregistrées</h1>
   Actuellement <?php echo $personneManager->getNombrePersonne(); ?> personnes enregistrées<br><br>
 
@@ -16,7 +16,7 @@
           <tr>
             <td>
               <a href="#" onclick='document.getElementById("form").submit()'>
-                <input name="id" type="hidden" value="<?php echo $personne->getPerNum(); ?>">
+                <input type="hidden" name="id_personne" value="<?php echo $personne->getPerNum(); ?>">
                 <?php echo $personne->getPerNum(); ?>
               </a>
             </td>
@@ -30,8 +30,10 @@
 <?php endif; ?>
 
 
-<?php if (!empty($_POST["id"])):?>
-  <?php if ($personneManager->getEtudiant($_POST["id"])): $personne=$personneManager->getEtudiant($_POST["id"]);?>
+<?php if (isset($_POST["id_personne"])): ?>
+  <?php if (!empty($personneManager->getEtudiant($_POST["id_personne"]))):
+    var_export($_POST["id_personne"]);
+    $personne=$personneManager->getEtudiant($_POST["id_personne"]);?>
     <h1>Détail sur l'étudiant <?php echo $personne->getPerNom(); ?></h1>
     <table>
       <thead>
@@ -53,15 +55,15 @@
       </tbody>
     </table>
 
-  <?php else: $personne=$personneManager->getSalarie($_POST["id"]);?>
+  <?php else: $personne=$personneManager->getSalarie($_POST["id_personne"]);?>
     <h1>Détail sur le salarié <?php echo $personne->getPerNom(); ?></h1>
     <table>
       <thead>
         <th>Prénom</th>
         <th>Mail</th>
         <th>Tel</th>
-        <th>Département</th>
-        <th>Ville</th>
+        <th>Tel pro</th>
+        <th>Fonction</th>
       </thead>
 
       <tbody>
@@ -76,4 +78,6 @@
     </table>
   <?php endif; ?>
 
-<?php endif; ?>
+<?php endif; //Post ne marche
+// getsalfon ne marche pas
+//ajout salarie parfois prob base fk ?>

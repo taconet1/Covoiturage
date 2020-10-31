@@ -13,6 +13,7 @@ class FonctionManager{
     while ($fonction = $req->fetch(PDO::FETCH_OBJ)) {
       $liste[]=new Fonction($fonction);
     }
+    $req->closeCursor();
     return $liste;
   }
 }

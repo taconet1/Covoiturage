@@ -13,18 +13,23 @@ class VilleManager{
 		return $res;
 	}
 
-	public function getNombreVille(){
-		$req = $this->db->prepare('SELECT COUNT(vil_num) FROM ville');
+	public function existe($ville){
+		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_nom=:ville');
+		$req->bindValue(':ville',$ville);
 		$req->execute();
-		$nombre = $req->fetchColumn();
-		return $nombre;
+		return $req->rowCount();
+	}
+
+	public function getNombreVille(){
+		$req=$this->db->query('SELECT COUNT(vil_num) FROM ville');
+		$res=$req->fetchColumn();
+		$req->closeCursor();
+		return $res;
 	}
 
 	public function getAllVille(){
-		$listeVilles = array();
-
-		$requete = $this->db->prepare('SELECT vil_num, vil_nom FROM ville');
-		$requete->execute();
+		$listeVilles=array();
+		$requete = $this->db->query('SELECT vil_num, vil_nom FROM ville');
 		while ($ligne = $requete->fetch(PDO::FETCH_OBJ)){
 			$listeVilles[] = new Ville($ligne);
 		}
@@ -33,9 +38,12 @@ class VilleManager{
 	}
 
 	public function getVil($id){
-		$req=$this->db->prepare("SELECT vil_nom FROM ville WHERE vil_num=$id");
+		$req=$this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num=:id');
+		$req->bindValue(':id',$id);
 		$req->execute();
-		return $req->fetchColumn();
+		$res=$req->fetchColumn();
+		$req->closeCursor();
+		return $res;
 	}
 }
 ?>

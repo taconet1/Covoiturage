@@ -14,7 +14,6 @@ class DivisionManager{
 			$liste[]= new Division($division);
 		}
 		$req->closeCursor();
-
 		return $liste;
 	}
 }
