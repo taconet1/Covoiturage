@@ -14,8 +14,8 @@ class VilleManager{
 	}
 
 	public function existe($ville){
-		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_nom=:ville');
-		$req->bindValue(':ville',$ville);
+		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_nom=?');
+		$req->bindValue(1,$ville,PDO::PARAM_STR);
 		$req->execute();
 		return $req->rowCount();
 	}
@@ -38,8 +38,8 @@ class VilleManager{
 	}
 
 	public function getVil($id){
-		$req=$this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num=:id');
-		$req->bindValue(':id',$id);
+		$req=$this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num=?');
+		$req->bindValue(1,$id,PDO::PARAM_INT);
 		$req->execute();
 		$res=$req->fetchColumn();
 		$req->closeCursor();
