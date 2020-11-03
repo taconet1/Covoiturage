@@ -15,11 +15,11 @@ class SalarieManager{
   }
 
   public function getSalFon($id){
-    $req=$this->db->prepare('SELECT fon_libelle FROM salarie s, fonction f WHERE s.fon_num=f.fon_num AND per_num= :id');
+    $req=$this->db->prepare('SELECT fon_libelle FROM salarie s, fonction f
+                                                WHERE s.fon_num=f.fon_num AND per_num=:id');
     $req->bindValue(':id',$id);
     $req->execute();
     $res=$req->fetchColumn();
-    var_dump($res);
     $req->closeCursor();
     return $res;
   }

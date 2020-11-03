@@ -43,12 +43,15 @@ class PersonneManager{
 		$req->bindValue(':id',$id);
 		$req->execute();
 		$etudiant=new Etudiant($req->fetch());
+		if ($etudiant->getPerNom()==null) {
+			$etudiant=null;
+		}
 		$req->closeCursor();
 		return $etudiant;
 	}
 
 	public function getSalarie($id){
-		$req=$this->db->prepare('SELECT per_nom,per_prenom,per_mail,per_tel,sal_telprof,fon_num
+		$req=$this->db->prepare('SELECT s.per_num,per_nom,per_prenom,per_mail,per_tel,sal_telprof,fon_num
 														 FROM personne p JOIN salarie s ON p.per_num=s.per_num WHERE s.per_num=:id');
 		$req->bindValue(':id',$id);
 		$req->execute();
