@@ -70,7 +70,7 @@
           <td><?php echo $personne->getPerMail(); ?></td>
           <td><?php echo $personne->getPerTel(); ?></td>
           <td><?php echo $personne->getTelProf(); ?></td>
-          <td><?php echo $salarieManager->getSalFon($personne->getPerNum()); ?></td>
+          <td><?php echo $fonctionManager->getFon($personne->getFonNum()); ?></td>
         </tr>
       </tbody>
     </table>

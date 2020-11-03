@@ -13,15 +13,5 @@ class SalarieManager{
     $req->bindValue(':fon_num',$salarie->getFonNum());
     return $req->execute();
   }
-
-  public function getSalFon($id){
-    $req=$this->db->prepare('SELECT fon_libelle FROM salarie s, fonction f
-                                                WHERE s.fon_num=f.fon_num AND per_num=:id');
-    $req->bindValue(':id',$id);
-    $req->execute();
-    $res=$req->fetchColumn();
-    $req->closeCursor();
-    return $res;
-  }
 }
 ?>

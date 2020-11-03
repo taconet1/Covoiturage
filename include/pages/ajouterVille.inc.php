@@ -16,7 +16,7 @@
       echo $_POST["ville_nom"]; ?></span>" a été ajoutée
     <?php }
     else {?>
-      <img src="image/erreur.png" alt="Valid">
+      <img src="image/erreur.png" alt="Erreur">
       La ville "<span><?php echo $_POST["ville_nom"]; ?></span>" existe déjà dans la liste
     <?php }
   }?>

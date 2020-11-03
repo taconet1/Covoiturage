@@ -143,7 +143,7 @@ body{
     width: 38%
 }
 
-label, span{
+label, span, p{
 	font-size:12pt;
    font-weight:bold;
 }
@@ -209,7 +209,7 @@ tr, th {
 	padding-left: 75px;
 	padding-right: 75px;
 }
-	
+
 .left, .right {
 	text-align: left;
 	display: flex;
@@ -245,4 +245,24 @@ input[type=radio]{
 
 td a {
 	font-weight: bold;
+}
+
+#trajet {
+	margin: auto;
+	position: relative;
+	max-width: 600px;
+}
+
+#trajet .gauche{
+	position: absolute;
+	text-align: left;
+}
+
+#trajet .droite {
+	text-align: right;
+}
+
+#trajet input[type=submit] {
+	position: absolute;
+	bottom: -100px;
 }
