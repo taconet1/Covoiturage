@@ -1,5 +1,6 @@
 <?php
 class Parcours{
+	private $numero;
 	private $ville1;
 	private $ville2;
 	private $kilometre;
@@ -11,14 +12,20 @@ class Parcours{
 	public function affecte($donnees){
 				foreach ($donnees as $attribut => $valeur){
 						switch ($attribut){
-								case 'ville1': $this->setville1($valeur); break;
-								case 'ville2': $this->setville2($valeur); break;
-								case 'kilometre': $this->setKilometre($valeur); break;
+								case 'par_num': $this->setNumero($valeur); break;
+								case 'ville1': $this->setVille1($valeur); break;
+								case 'ville2': $this->setVille2($valeur); break;
+								case 'par_km': $this->setKilometre($valeur); break;
 						}
 				}
 		}
 
-
+	public function getNumero(){
+		return $this->numero;
+	}
+	public function setNumero($numero) {
+	       $this->numero= $numero;
+  }
 
 	public function getVille1(){
 		return $this->ville1;

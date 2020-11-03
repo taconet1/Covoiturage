@@ -33,8 +33,8 @@ class ParcoursManager{
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 
-		while ($parcours = $requete->fetch())
-	    {  $listeParcours[] = $parcours;}
+		while ($parcours = $requete->fetch(PDO::FETCH_OBJ))
+	    {  $listeParcours[] = new Parcours($parcours);}
 			$requete->closeCursor();
 			return $listeParcours;
 		}

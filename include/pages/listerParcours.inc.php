@@ -19,10 +19,10 @@ if ($total == 1) {?>
     <?php
     $parcours=$parcoursManager->getAllParcours();
     foreach ($parcours as $par){ ?>
-    		<tr><td><?php echo $par['par_num'];?>
-    		</td><td><?php echo $par['ville1'];?>
-    		</td><td><?php echo $par['ville2'];?>
-        </td><td><?php echo $par['par_km'];?>
+    		<tr><td><?php echo $par->getNumero();?>
+    		</td><td><?php echo $par->getVille1();?>
+    		</td><td><?php echo $par->getVille2();?>
+        </td><td><?php echo $par->getKilometre();?>
     		</td></tr>
     	<?php }?>
   </tbody>
