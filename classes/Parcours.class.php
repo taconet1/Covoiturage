@@ -15,7 +15,7 @@ class Parcours{
 								case 'par_num': $this->setNumero($valeur); break;
 								case 'ville1': $this->setVille1($valeur); break;
 								case 'ville2': $this->setVille2($valeur); break;
-								case 'par_km': $this->setKilometre($valeur); break;
+								case 'kilometre': $this->setKilometre($valeur); break;
 						}
 				}
 		}
