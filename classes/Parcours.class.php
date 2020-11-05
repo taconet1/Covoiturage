@@ -31,19 +31,19 @@ class Parcours{
 		return $this->ville1;
 	}
 	public function setVille1 ($ville1) {
-	       $this->ville1= $ville1;
+	  $this->ville1= $ville1;
   }
 	public function getVille2(){
 		return $this->ville2;
 	}
 	public function setVille2 ($ville2) {
-		$this->ville2= $ville2;
+		$this->ville2=$ville2;
   }
 	public function getKilometre(){
 		return $this->kilometre;
 	}
 	public function setKilometre ($kilometre) {
-		$this->kilometre= $kilometre;
+		$this->kilometre=$kilometre;
   }
 
 
