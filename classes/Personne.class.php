@@ -1,4 +1,6 @@
 <?php
+include("include/functions.inc.php");
+
 class Personne{
 	protected $per_num;
 	protected $per_nom;
@@ -23,7 +25,7 @@ class Personne{
 				case 'per_tel': $this->setPerTel($value);break;
 				case 'per_mail': $this->setPerMail($value);break;
 				case 'per_login': $this->setPerLogin($value);break;
-				case 'per_pwd': $this->setPerPwd(sha1(sha1($value).SALT));break;
+				case 'per_pwd': $this->setPerPwd(crypterMDP($value));break;
 			}
 		}
 	}
