@@ -13,12 +13,10 @@ class ParcoursManager{
 	}
 
 	public function add($parcours){
-
-		if($bool){
 		$requete = $this->db->prepare(
-						'INSERT INTO parcours (par_km, vil_num1,vil_num2) VALUES (:kilometre, :ville1, :ville2);');
+						'INSERT INTO parcours (par_km, vil_num1,vil_num2) VALUES (:par_km, :ville1, :ville2);');
 
-  					$requete->bindValue(':kilometre',$parcours->getKilometre());
+  					$requete->bindValue(':par_km',$parcours->getKilometre());
 						$requete->bindValue(':ville1',$parcours->getVille1());
 						$requete->bindValue(':ville2',$parcours->getVille2());
 
@@ -26,7 +24,7 @@ class ParcoursManager{
             $retour=$requete->execute();
 
 						return $retour;
-		}
+
 	}
 
 	public function nombre(){

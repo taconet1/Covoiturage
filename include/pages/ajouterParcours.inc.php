@@ -21,8 +21,8 @@ if (empty($_POST["kilometre"])){//premier appel
       <?php } ?>
     </select>
 
-    <label for="kilometre">Nombres de kilometre(s) : </label>
-    <input type="number" id="kilometre" name="kilometre" ><br><br>
+    <label for="par_km">Nombres de kilometre(s) : </label>
+    <input type="number" id="kilometre" name="par_km" ><br><br>
     <input type="submit" value="Valider">
 
 </form>
