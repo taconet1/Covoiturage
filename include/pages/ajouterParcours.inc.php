@@ -29,13 +29,17 @@ if (empty($_POST["kilometre"])){//premier appel
 <?php
 } else {
 $parcours = new Parcours($_POST);
-$retour=$parcoursManager->add($parcours);
-//on appelle la méthode add en lui passant un objet client
+$row=$parcoursManager->present($_POST["ville1"], $_POST["ville2"]);
+if($row == 0){
+  $retour=$parcoursManager->add($parcours);
+  //on appelle la méthode add en lui passant un objet client
 
-if ($retour !=0){ //retour contient le nombre de lignes affectées?>
-  <img src="image/valid.png" alt="Valid"> Le parcours a été ajoutée
-<?php
-} else
- echo "Problème";
-}
-?>
+  if ($retour !=0){ //retour contient le nombre de lignes affectées?>
+    <img src="image/valid.png" alt="Valid"> Le parcours a été ajoutée
+  <?php
+  } else
+   echo "Problème";
+ }else{?>
+   <img src="image/erreur.png" alt="Valid">
+    le parcours existe deja
+  <?php }} ?>
