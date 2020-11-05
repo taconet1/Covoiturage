@@ -3,7 +3,7 @@
   if (empty($_POST["ville_nom"])) {?>
     <form action="#" method="post">
       <label for="ville_nom">Nom : </label>
-      <input type="text" id="ville_nom" name="ville_nom" required>
+      <input type="text" id="ville_nom" name="ville_nom" pattern="[A-zÀ-ú]*-?[A-zÀ-ú]" required>
       <input type="submit" value="Valider">
     </form>
   <?php }

@@ -11,8 +11,8 @@
             <label for="per_login">Login : </label>
         </div>
         <div class="champ">
-          <input type="text" id="per_nom" name="per_nom" required>
-          <input type="tel" id="per_tel" name="per_tel" minlength="10" maxlength="10" pattern="[0-9]{10}" required>
+          <input type="text" id="per_nom" name="per_nom" pattern="[A-zÀ-ú]*-?[A-zÀ-ú]*" required>
+          <input type="tel" id="per_tel" name="per_tel" minlength="10" maxlength="10" pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$" required>
           <input type="text" id="per_login" name="per_login" required>
         </div>
       </div>
@@ -24,8 +24,8 @@
           <label for="per_pwd">Password : </label>
         </div>
         <div class="champ">
-          <input type="text" id="per_prenom" name="per_prenom" required>
-          <input type="email" id="per_mail" name="per_mail" required>
+          <input type="text" id="per_prenom" name="per_prenom" pattern="[A-zÀ-ú]*-?[A-zÀ-ú]*" required>
+          <input type="email" id="per_mail" name="per_mail" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
           <input type="password" id="per_pwd" name="per_pwd" required>
         </div>
       </div>
@@ -70,7 +70,7 @@
 
   <form action="index.php?page=1" method="post">
     <label for="telpro">Téléphone professionnel : </label>
-    <input type="tel" name="telpro" minlength="10" maxlength="10" pattern="[0-9]{10}" required><br><br>
+    <input type="tel" name="telpro" minlength="10" maxlength="10" pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$" required><br><br>
     <label for="fonction">Fonction : </label>
     <select id="fonction" name="fonction">
       <?php $fonctions=$fonctionManager->getAllFonction();
