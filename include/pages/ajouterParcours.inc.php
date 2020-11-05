@@ -22,7 +22,7 @@ if (empty($_POST["kilometre"])){//premier appel ?>
 
     <label for="kilometre">Nombres de kilometre(s) : </label>
     <input type="number" name="kilometre" ><br><br>
-    
+
     <input type="submit" value="Valider">
 
 </form>
