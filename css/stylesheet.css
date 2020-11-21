@@ -189,8 +189,9 @@ input[type=submit] {
 		padding-right: 30px;
 }
 
-input[type=password]{
+input[type=password], input[type=text]{
 	font-weight: bold;
+	width: 200px;
 }
 
 table {
@@ -206,8 +207,8 @@ tr td {
 }
 
 tr, th {
-	padding-left: 75px;
-	padding-right: 75px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .left, .right {
@@ -265,4 +266,21 @@ td a {
 #trajet input[type=submit] {
 	position: absolute;
 	bottom: -100px;
+}
+
+#villeDepart {
+	margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+.nombre {
+	margin: 10px ;
+	margin-bottom: 0;
+	border: 1px solid black;
+}
+
+.operation {
+	display: inline-block;
+	font-size: 30px;
+	font-weight: bold;
 }

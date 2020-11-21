@@ -1,14 +1,13 @@
-
 <h1>Pour vous connecter</h1>
 <form action="#" method="POST">
-  Nom d'utilisateur: <br>
+  <label for="nomUtilisateur">Nom d'utilisateur: </label><br>
   <input type="text" name="nomUtilisateur"><br>
-  Mot de passe:<br>
+  <label for="mdp">Mot de passe: </label><br>
   <input type="password" name="mdp"><br>
 
-  <?php $nb1=rand(1,9); $nb2=rand(1,9);
-  echo "$nb1 + $nb2 = "
-  ?><br>
-  <input type="number" name="nombre"><br>
+  <?php $nombre1=rand(1,9); $nombre2=rand(1,9);?>
+  <img class="nombre" src="image/nb/<?php echo $nombre1; ?>" alt="nombre1"><span class="operation"> + </span>
+  <img class="nombre" src="image/nb/<?php echo $nombre2; ?>" alt="nombre2"><span class="operation"> = </span><br>
+  <input type="number" name="nombre"><br><br>
   <input type="submit" value="Valider">
 </form>
