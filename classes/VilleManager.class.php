@@ -29,7 +29,7 @@ class VilleManager{
 
 	public function getAllVille(){
 		$listeVilles=array();
-		$requete = $this->db->query('SELECT vil_num, vil_nom FROM ville');
+		$requete = $this->db->query('SELECT vil_num, vil_nom FROM ville ORDER BY 2');
 		while ($ligne = $requete->fetch(PDO::FETCH_OBJ)){
 			$listeVilles[] = new Ville($ligne);
 		}
