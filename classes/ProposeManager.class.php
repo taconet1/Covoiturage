@@ -60,7 +60,7 @@ class ProposeManager{
 		$req->bindValue(':id',$idVilleDepart);
 		$req->execute();
 		$ville_1_A_Ville_2=$req->fetchColumn();
-		if ($ville_1_A_Ville_2=1) {
+		if ($ville_1_A_Ville_2==1) {
 			return '0';
 		}else {
 			return '1';
