@@ -5,7 +5,7 @@
     <label for="depart">Ville de départ : </label><br><br>
     <select name="depart" onChange='javascript:document.getElementById("proposer").submit()'>
         <option value="0">Choisissez</option>
-      <?php $parcours=$parcoursManager->getListeVilleDepart();
+      <?php $parcours=$proposeManager->getListeVilleDepart();
             foreach ($parcours as $ville): ?>
         <option value="<?php echo $ville->getVilNum(); ?>"><?php echo $ville->getVilNom(); ?></option>
       <?php endforeach; ?>
@@ -30,7 +30,7 @@
     <div class="droite">
       <label for="arrivee">Ville d'arrivée : </label>
       <select name="arrivee">
-        <?php $listeVille=$parcoursManager->getListeVilleArrivee($_POST["depart"]);
+        <?php $listeVille=$proposeManager->getListeVilleArrivee($_POST["depart"]);
               foreach ($listeVille as $ville): ?>
           <option value="<?php echo $ville->getVilNum(); ?>"><?php echo $ville->getVilNom(); ?></option>
         <?php endforeach; ?>
@@ -47,10 +47,10 @@
 
 <?php if (!empty($_SESSION['depart']) && !empty($_POST["arrivee"])):
   $trajet=new Propose($_POST);
-  $trajet->setParNum($parcoursManager->getParNum($_SESSION['depart'],$_POST["arrivee"]));
+  $trajet->setParNum($proposeManager->getParNum($_SESSION['depart'],$_POST["arrivee"]));
   // !!!! $_SESSION
   $trajet->setPerNum(1);
-  $trajet->setProSens($parcoursManager->getSensTrajet($_SESSION['depart']));
+  $trajet->setProSens($proposeManager->getSensTrajet($_SESSION['depart']));
   if ($proposeManager->existe($trajet)==0) {
     $proposeManager->ajouter($trajet);?>
     <img src="image/valid.png" alt="Valid"> Votre proposition a été prise en compte
