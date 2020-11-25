@@ -60,7 +60,7 @@ class ProposeManager{
 		$req->bindValue(':id',$idVilleDepart);
 		$req->execute();
 		$ville_1_A_Ville_2=$req->fetchColumn();
-		if ($ville_1_A_Ville_2==1) {
+		if ($ville_1_A_Ville_2==$idVilleDepart) {
 			return '0';
 		}else {
 			return '1';
@@ -68,7 +68,7 @@ class ProposeManager{
 	}
 
 	public function getParNum($idVilleDepart, $idVilleArrivee){
-		$req=$this->db->prepare('SELECT par_num FROM parcours WHERE vil_num1=:idDepart AND vil_num2=:idArrivee');
+		$req=$this->db->prepare('SELECT par_num FROM parcours WHERE vil_num1=:idDepart AND vil_num2=:idArrivee UNION SELECT par_num FROM parcours WHERE vil_num1=:idArrivee AND vil_num2=:idDepart');
 		$req->bindValue(':idDepart',$idVilleDepart);
 		$req->bindValue(':idArrivee',$idVilleArrivee);
 		$req->execute();

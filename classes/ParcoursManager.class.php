@@ -19,9 +19,11 @@ class ParcoursManager{
 	}
 
 	public function existe($ville1, $ville2){
-		$req=$this->db->prepare('SELECT par_num FROM parcours WHERE vil_num1=? and vil_num2=?');
+		$req=$this->db->prepare('SELECT par_num FROM parcours WHERE vil_num1=? and vil_num2=? UNION SELECT par_num FROM parcours WHERE vil_num1=? and vil_num2=?');
 		$req->bindValue(1,$ville1,PDO::PARAM_STR);
 		$req->bindValue(2,$ville2,PDO::PARAM_STR);
+		$req->bindValue(3,$ville2,PDO::PARAM_STR);
+		$req->bindValue(4,$ville1,PDO::PARAM_STR);
 		$req->execute();
 		return $req->rowCount();
 	}
