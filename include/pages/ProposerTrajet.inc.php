@@ -47,7 +47,7 @@
 
 <?php if (!empty($_SESSION['depart']) && !empty($_POST["arrivee"])):
   $trajet=new Propose($_POST);
-  if ($proposeManager->getParNum($_SESSION['depart'],$_POST["arrivee"])==1) {
+  if ($proposeManager->getParNum($_SESSION['depart'],$_POST["arrivee"])!=0) {
     $trajet->setParNum($proposeManager->getParNum($_SESSION['depart'],$_POST["arrivee"]));
     // !!!! $_SESSION
     $trajet->setPerNum(1);
