@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 <!doctype html>
 <html lang="fr">
 
@@ -28,6 +28,12 @@
 			</div>
 			</div>
 			<div id="connect">
-				<a href="index.php?page=11">Connexion</a>
-			</div>
+        <?php if (isset($_SESSION["connexion"])){ ?>
+
+          <a href="index.php?page=11">Connexion</a>
+        <?php }else{?>
+          Utilisateur : <?php echo   $_SESSION["nomUtilisateur"] ?>
+          <a href="index.php?page=12">Déconnexion</a>
+        <?php } ?>
+      </div>
 	</div>
