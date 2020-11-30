@@ -60,4 +60,12 @@ class PersonneManager{
 		return $salarie;
 	}
 
+	public function getmdp($login){
+		$req=$this->db->prepare('SELECT per_pwd FROM personne WHERE per_login=\''.$login.'\'');
+		$req->execute();
+		$res=$req->fetchColumn();
+		$req->closeCursor();
+		return $res;
+	}
+
 }
