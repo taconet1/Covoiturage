@@ -14,6 +14,7 @@ $personneManager=new PersonneManager($pdo);
 $proposeManager=new ProposeManager($pdo);
 $salarieManager=new SalarieManager($pdo);
 $villeManager=new VilleManager($pdo);
+$avisManager=new AvisManager($pdo);
 
 ?>
 <div id="corps">

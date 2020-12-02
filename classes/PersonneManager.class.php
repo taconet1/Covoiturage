@@ -68,4 +68,14 @@ class PersonneManager{
 		return $res;
 	}
 
+	public function getPrenomNom($id){
+		$req=$this->db->prepare('SELECT per_prenom, per_nom FROM personne WHERE per_num=:per_num');
+		$req->bindValue(':per_num', $id);
+		$req->execute();
+
+		$personne=$req->fetch();
+		$req->closeCursor();
+		return $personne;
+	}
+
 }

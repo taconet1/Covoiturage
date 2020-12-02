@@ -18,9 +18,9 @@ class Propose{
       switch ($key) {
         case 'par_num': $this->setParNum($value); break;
         case 'per_num': $this->setPerNum($value); break;
-        case 'dateDepart': $this->setProDate($value); break;
-        case 'heureDepart': $this->setProTime($value); break;
-        case 'places': $this->setProPlace($value); break;
+        case 'pro_date': $this->setProDate($value); break;
+        case 'pro_time': $this->setProTime($value); break;
+        case 'pro_place': $this->setProPlace($value); break;
         case 'pro_sens': $this->setProSens($value); break;
       }
     }

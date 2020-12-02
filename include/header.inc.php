@@ -24,16 +24,16 @@
 				</a>
 			</div>
 			<div class="colonne">
-				Covoiturage de l'IUT,<br />Partagez plus que votre véhicule !!!
+				Covoiturage de l'IUT,<br/>Partagez plus que votre véhicule !!!
 			</div>
 			</div>
 			<div id="connect">
-        <?php if (isset($_SESSION["connexion"])){ ?>
-
+        <?php if (!isset($_SESSION["connexion"])): ?>
           <a href="index.php?page=11">Connexion</a>
-        <?php }else{?>
-          Utilisateur : <?php echo   $_SESSION["nomUtilisateur"] ?>
+        <?php endif; ?>
+        <?php if (isset($_SESSION["nomUtilisateur"])): ?>
+          Utilisateur : <?php echo $_SESSION["nomUtilisateur"]; ?>
           <a href="index.php?page=12">Déconnexion</a>
-        <?php } ?>
+        <?php endif; ?>
       </div>
 	</div>
