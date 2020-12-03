@@ -1,6 +1,6 @@
-<?php if (empty($_POST["personne"])): ?>
-
   <h1>Ajouter une personne</h1>
+  
+<?php if (empty($_POST["personne"])): ?>
   <form action="#" method="post">
     <div id="ajouter_personne">
 
@@ -40,46 +40,54 @@
   </form>
 <?php endif; ?>
 
-<?php if (!empty($_POST["personne"]) && $_POST["personne"]=="etudiant"): ?>
+<?php if (!empty($_POST["personne"])): ?>
+  <?php if ($personneManager->getLogin($_POST["per_login"])!=null): ?>
+    <img src="image/erreur.png" alt="Erreur"> Le login existe déjà
+  <?php endif; ?>
 
-  <h1>Ajouter un étudiant</h1>
+  <?php if ($personneManager->getLogin($_POST["per_login"])==null): ?>
+    <?php if ($_POST["personne"]=="etudiant"): ?>
+      <h1>Ajouter un étudiant</h1>
 
-  <form action="index.php?page=1" method="post">
-    <label for="annee">Année : </label>
-    <select id="annee" name="annee">
-      <?php $divisions=$divisionManager->getAllDivision();
-      foreach ($divisions as $division ): ?>
-        <option value="<?php echo $division->getDivNum(); ?>"><?php echo $division->getDivNom(); ?></option>
-      <?php endforeach; ?>
-    </select><br><br>
+      <form action="#" method="post">
+        <label for="annee">Année : </label>
+        <select id="annee" name="annee">
+          <?php $divisions=$divisionManager->getAllDivision();
+          foreach ($divisions as $division ): ?>
+            <option value="<?php echo $division->getDivNum(); ?>"><?php echo $division->getDivNom(); ?></option>
+          <?php endforeach; ?>
+        </select><br><br>
 
-    <label for="departement">Département : </label>
-    <select id="departement" name="departement">
-      <?php $departements=$departementManager->getAllDepartement();
-      foreach ($departements as $departement): ?>
-        <option value="<?php echo $departement->getDepNum(); ?>"><?php echo $departement->getDepNom();?> (<?php echo $villeManager->getVil($departement->getVilNum()); ?>)</option>
-      <?php endforeach; ?>
-    </select><br><br>
-    <input type="submit" value="Valider">
-  </form>
-<?php endif; ?>
+        <label for="departement">Département : </label>
+        <select id="departement" name="departement">
+          <?php $departements=$departementManager->getAllDepartement();
+          foreach ($departements as $departement): ?>
+            <option value="<?php echo $departement->getDepNum(); ?>"><?php echo $departement->getDepNom();?> (<?php echo $villeManager->getVil($departement->getVilNum()); ?>)</option>
+          <?php endforeach; ?>
+        </select><br><br>
+        <input type="submit" value="Valider">
+      </form>
+    <?php endif; ?>
 
-<?php if (!empty($_POST["personne"]) && $_POST["personne"]=="personnel"): ?>
+    <?php if ($_POST["personne"]=="personnel"): ?>
+      <h1>Ajouter un salarié</h1>
 
-  <h1>Ajouter un salarié</h1>
+      <form action="#" method="post">
+        <label for="telpro">Téléphone professionnel : </label>
+        <input type="tel" name="telpro" minlength="10" maxlength="10" pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$" required><br><br>
+        <label for="fonction">Fonction : </label>
+        <select id="fonction" name="fonction">
+          <?php $fonctions=$fonctionManager->getAllFonction();
+          foreach ($fonctions as $fonction): ?>
+              <option value="<?php echo $fonction->getFonNum(); ?>"><?php echo $fonction->getFonLibelle(); ?></option>
+          <?php endforeach; ?>
+        </select><br><br>
+        <input type="submit" value="Valider">
+      </form>
+    <?php endif; ?>
+  <?php endif; ?>
 
-  <form action="index.php?page=1" method="post">
-    <label for="telpro">Téléphone professionnel : </label>
-    <input type="tel" name="telpro" minlength="10" maxlength="10" pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$" required><br><br>
-    <label for="fonction">Fonction : </label>
-    <select id="fonction" name="fonction">
-      <?php $fonctions=$fonctionManager->getAllFonction();
-      foreach ($fonctions as $fonction): ?>
-          <option value="<?php echo $fonction->getFonNum(); ?>"><?php echo $fonction->getFonLibelle(); ?></option>
-      <?php endforeach; ?>
-    </select><br><br>
-    <input type="submit" value="Valider">
-  </form>
+
 <?php endif; ?>
 
 <?php

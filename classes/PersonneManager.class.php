@@ -61,8 +61,10 @@ class PersonneManager{
 	}
 
 	public function getmdp($login){
-		$req=$this->db->prepare('SELECT per_pwd FROM personne WHERE per_login=\''.$login.'\'');
+		$req=$this->db->prepare('SELECT per_pwd FROM personne WHERE per_login=:login');
+		$req->bindValue(':login',$login);
 		$req->execute();
+		
 		$res=$req->fetchColumn();
 		$req->closeCursor();
 		return $res;
@@ -71,6 +73,16 @@ class PersonneManager{
 	public function getPrenomNom($id){
 		$req=$this->db->prepare('SELECT per_prenom, per_nom FROM personne WHERE per_num=:per_num');
 		$req->bindValue(':per_num', $id);
+		$req->execute();
+
+		$personne=$req->fetch();
+		$req->closeCursor();
+		return $personne;
+	}
+
+	public function getLogin($per_login){
+		$req=$this->db->prepare('SELECT per_nom FROM personne WHERE per_login=:per_login');
+		$req->bindValue(':per_login', $per_login);
 		$req->execute();
 
 		$personne=$req->fetch();
