@@ -19,7 +19,7 @@
 			<li><a href="index.php?page=8">Lister</a></li>
 		</ul>
 
-		<?php if(!isset($_SESSION["connexion"])){ ?>
+		<?php if(isset($_SESSION["nomUtilisateur"])){ ?>
 		<p><img src="image/trajet.png" class="imagMenu" alt="Trajet"/>Trajet</p>
 		<ul>
 			<li><a href="index.php?page=9">Proposer</a></li>

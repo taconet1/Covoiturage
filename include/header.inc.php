@@ -28,7 +28,8 @@
 			</div>
 			</div>
 			<div id="connect">
-        <?php if (!isset($_SESSION["connexion"])): ?>
+        <?php if (!isset($_SESSION["nomUtilisateur"])): ?>
+
           <a href="index.php?page=11">Connexion</a>
         <?php endif; ?>
         <?php if (isset($_SESSION["nomUtilisateur"])): ?>
