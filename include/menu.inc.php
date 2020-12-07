@@ -19,12 +19,12 @@
 			<li><a href="index.php?page=8">Lister</a></li>
 		</ul>
 
-		<?php if(isset($_SESSION["nomUtilisateur"])){ ?>
 		<p><img src="image/trajet.png" class="imagMenu" alt="Trajet"/>Trajet</p>
-		<ul>
-			<li><a href="index.php?page=9">Proposer</a></li>
-			<li><a href="index.php?page=10">Rechercher</a></li>
-		</ul>
-	<?php } ?>
+		<?php if (isset($_SESSION["nomUtilisateur"])): ?>
+			<ul>
+				<li><a href="index.php?page=9">Proposer</a></li>
+				<li><a href="index.php?page=10">Rechercher</a></li>
+			</ul>
+		<?php endif; ?>
 	</div>
 </div>
