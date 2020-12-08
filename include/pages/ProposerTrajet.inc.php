@@ -20,11 +20,11 @@
       <p id="villeDepart">Ville de départ : <?php echo $villeManager->getVil($_POST["depart"]); ?></p><br>
 
       <?php date_default_timezone_set("Europe/Amsterdam");?>
-      <label for="dateDepart">Date de départ : </label>
-    <input type="date" name="dateDepart" value="<?php $dateDepart=date("Y-m-d"); echo $dateDepart; ?>"><br>
+      <label for="pro_date">Date de départ : </label>
+      <input type="date" name="pro_date" value="<?php $dateDepart=date("Y-m-d"); echo $dateDepart; ?>"><br>
 
-      <label for="places">Nombre de places : </label>
-      <input type="number" name="places" required>
+      <label for="pro_place">Nombre de places : </label>
+      <input type="number" name="pro_place" required>
     </div>
 
     <div class="droite">
@@ -36,8 +36,8 @@
         <?php endforeach; ?>
       </select><br>
 
-      <label for="heureDepart">Heure de départ : </label>
-      <input type="time" name="heureDepart" value="<?php $horaireDepart=date("H:i:s"); echo $horaireDepart; ?>">
+      <label for="pro_time">Heure de départ : </label>
+      <input type="time" name="pro_time" value="<?php $horaireDepart=date("H:i:s"); echo $horaireDepart; ?>">
     </div><br>
 
     <input type="submit" value="Valider">
@@ -47,14 +47,16 @@
 
 <?php if (!empty($_SESSION['depart']) && !empty($_POST["arrivee"])):
   $trajet=new Propose($_POST);
-  $trajet->setParNum($proposeManager->getParNum($_SESSION['depart'],$_POST["arrivee"]));
-  // !!!! $_SESSION
-  $trajet->setPerNum(1);
+
+  $trajet->setParNum($proposeManager->getParNum($_SESSION['depart'], $_POST["arrivee"]));
+  $trajet->setPerNum($personneManager->getPerNum($_SESSION["nomUtilisateur"]));
   $trajet->setProSens($proposeManager->getSensTrajet($_SESSION['depart']));
-  if ($proposeManager->existe($trajet)==0) {
-    $proposeManager->ajouter($trajet);?>
-    <img src="image/valid.png" alt="Valid"> Votre proposition a été prise en compte
-  <?php
+
+  if ($proposeManager->existe($trajet)==false) {
+    $estAjoute = $proposeManager->ajouter($trajet);
+    if ($estAjoute==true) {?>
+      <img src="image/valid.png" alt="Valid"> Votre proposition a été prise en compte
+    <?php }
   } else{?>
     <img src="image/erreur.png" alt="Erreur"> Votre proposition a déjà été enregistré
   <?php }?>
