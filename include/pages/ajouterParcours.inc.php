@@ -4,7 +4,7 @@ if (empty($_POST["kilometre"])){//premier appel ?>
 
 <form name="info" action="index.php?page=5" method="POST">
     <label for="ville1">Ville 1 : </label>
-    <select name="ville1">
+    <select id="ville1" name="ville1">
       <?php
       $villes=$villeManager->getAllVille();
       foreach ($villes as $ville){ ?>
@@ -13,7 +13,7 @@ if (empty($_POST["kilometre"])){//premier appel ?>
     </select>
 
     <label for="ville2">Ville 2 : </label>
-    <select name="ville2">
+    <select id="ville2" name="ville2">
       <?php
       foreach ($villes as $ville){ ?>
         <option value="<?php echo $ville->getVilNum();?>"> <?php echo $ville->getVilNom() ?> </option>
@@ -21,7 +21,7 @@ if (empty($_POST["kilometre"])){//premier appel ?>
     </select>
 
     <label for="kilometre">Nombres de kilometre(s) : </label>
-    <input type="number" name="kilometre" ><br><br>
+    <input id="kilometre" type="number" name="kilometre" ><br><br>
 
     <input type="submit" value="Valider">
 

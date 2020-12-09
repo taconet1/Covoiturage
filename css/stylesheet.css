@@ -231,6 +231,10 @@ tr, th {
 	margin-top: 50px;
 }
 
+#categorie {
+	display: inline-block;
+}
+
 .etiquette, .champ {
 	display: flex;
 	flex-direction: column;
@@ -276,11 +280,6 @@ td .nomCovoit {
 #trajet input[type=submit] {
 	position: absolute;
 	bottom: -100px;
-}
-
-#villeDepart {
-	margin-block-start: 0px;
-  margin-block-end: 0px;
 }
 
 .nombre {

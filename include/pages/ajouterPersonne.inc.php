@@ -1,6 +1,6 @@
-  <h1>Ajouter une personne</h1>
-  
 <?php if (empty($_POST["personne"])): ?>
+  <h1>Ajouter une personne</h1>
+
   <form action="#" method="post">
     <div id="ajouter_personne">
 
@@ -31,11 +31,14 @@
       </div>
     </div>
 
-    <label for="personne">Catégorie : </label>
+    <span>Catégorie : </span>
+
     <input type="radio" id="etudiant" name="personne" value="etudiant" required>
     <label for="etudiant">Etudiant</label>
+
     <input type="radio" id="personnel" name="personne" value="personnel">
     <label for="personnel">Personnel</label><br><br>
+
     <input type="submit" value="Valider">
   </form>
 <?php endif; ?>
@@ -45,11 +48,11 @@
     <img src="image/erreur.png" alt="Erreur"> Le login existe déjà
   <?php endif; ?>
 
-  <?php if ($personneManager->getLogin($_POST["per_login"])==null): ?>
+  <?php if ($personneManager->getLogin($_POST["per_login"])==null):?>
     <?php if ($_POST["personne"]=="etudiant"): ?>
       <h1>Ajouter un étudiant</h1>
 
-      <form action="#" method="post">
+      <form action="index.php?page=1" method="post">
         <label for="annee">Année : </label>
         <select id="annee" name="annee">
           <?php $divisions=$divisionManager->getAllDivision();
@@ -65,6 +68,7 @@
             <option value="<?php echo $departement->getDepNum(); ?>"><?php echo $departement->getDepNom();?> (<?php echo $villeManager->getVil($departement->getVilNum()); ?>)</option>
           <?php endforeach; ?>
         </select><br><br>
+
         <input type="submit" value="Valider">
       </form>
     <?php endif; ?>
@@ -72,9 +76,10 @@
     <?php if ($_POST["personne"]=="personnel"): ?>
       <h1>Ajouter un salarié</h1>
 
-      <form action="#" method="post">
+      <form action="index.php?page=1" method="post">
         <label for="telpro">Téléphone professionnel : </label>
-        <input type="tel" name="telpro" minlength="10" maxlength="10" pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$" required><br><br>
+        <input id="telpro" type="tel" name="telpro" minlength="10" maxlength="10" pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$" required><br><br>
+
         <label for="fonction">Fonction : </label>
         <select id="fonction" name="fonction">
           <?php $fonctions=$fonctionManager->getAllFonction();
@@ -82,20 +87,21 @@
               <option value="<?php echo $fonction->getFonNum(); ?>"><?php echo $fonction->getFonLibelle(); ?></option>
           <?php endforeach; ?>
         </select><br><br>
+
         <input type="submit" value="Valider">
       </form>
     <?php endif; ?>
   <?php endif; ?>
+<?php endif; ?>
 
-
+<?php if (!empty($_POST["personne"])): ?>
+  <?php if ($personneManager->getLogin($_POST["per_login"])==null):
+    $personne=new Personne($_POST);
+    $personneManager->ajouter($personne);?>
+  <?php endif; ?>
 <?php endif; ?>
 
 <?php
-  if (!empty($_POST["personne"])){
-    $personne=new Personne($_POST);
-    $personneManager->ajouter($personne);
-  }
-
   if (!empty($_POST["departement"]) && !empty($_POST["annee"])) {
     $infos=array("per_num"=>$pdo->lastInsertId(),"dep_num"=>$_POST["departement"],"div_num"=>$_POST["annee"]);
     $etudiant=new Etudiant($infos);

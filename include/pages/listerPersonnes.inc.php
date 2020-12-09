@@ -1,28 +1,32 @@
 <?php if (empty($_GET["id"])): ?>
   <h1>Liste des personnes enregistrées</h1>
+
   Actuellement <?php echo $personneManager->getNombrePersonne(); ?> personnes enregistrées<br><br>
 
   <?php $listePersonnes = $personneManager->getAllPersonne();?>
     <table>
       <thead>
-        <th>Numéro</th>
-        <th>Nom</th>
-        <th>Prénom</th>
+        <tr>
+          <th>Numéro</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+        </tr>
       </thead>
 
       <tbody>
       <?php foreach ($listePersonnes as $personne): $i=0;?>
-          <tr>
-            <td>
-              <a href="index.php?page=2&id=<?php echo $personne->getPerNum(); ?>" >
-                <?php echo $personne->getPerNum(); ?>
-              </a>
-            </td>
-            <td><?php echo $personne->getPerNom(); ?></td>
-            <td><?php echo $personne->getPerPrenom(); ?></td>
-          </tr>
+        <tr>
+          <td>
+            <a href="index.php?page=2&id=<?php echo $personne->getPerNum(); ?>" >
+              <?php echo $personne->getPerNum(); ?>
+            </a>
+          </td>
+          <td><?php echo $personne->getPerNom(); ?></td>
+          <td><?php echo $personne->getPerPrenom(); ?></td>
+        </tr>
       <?php endforeach; ?>
       </tbody>
+
     </table>
 <?php endif; ?>
 
@@ -34,11 +38,13 @@
   <h1>Détail sur l'étudiant <?php echo $personne->getPerNom(); ?></h1>
   <table>
     <thead>
-      <th>Prénom</th>
-      <th>Mail</th>
-      <th>Tel</th>
-      <th>Département</th>
-      <th>Ville</th>
+      <tr>
+        <th>Prénom</th>
+        <th>Mail</th>
+        <th>Tel</th>
+        <th>Département</th>
+        <th>Ville</th>
+      </tr>
     </thead>
 
     <tbody>
@@ -57,11 +63,13 @@
     <h1>Détail sur le salarié <?php echo $personne->getPerNom(); ?></h1>
     <table>
       <thead>
-        <th>Prénom</th>
-        <th>Mail</th>
-        <th>Tel</th>
-        <th>Tel pro</th>
-        <th>Fonction</th>
+        <tr>
+          <th>Prénom</th>
+          <th>Mail</th>
+          <th>Tel</th>
+          <th>Tel pro</th>
+          <th>Fonction</th>
+        </tr>
       </thead>
 
       <tbody>

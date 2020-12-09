@@ -1,17 +1,12 @@
 <?php session_start();?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
+<meta charset="utf-8">
 
-  <meta charset="utf-8">
-  <meta http-equiv="pragma" content="no-cache">
-
-<?php
-		$title = "Bienvenue sur le site de covoiturage de l'IUT.";?>
-		<title>
-		<?php echo $title ?>
-		</title>
+<?php $title = "Bienvenue sur le site de covoiturage de l'IUT.";?>
+<title><?php echo $title ?></title>
 
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
 </head>

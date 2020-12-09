@@ -88,4 +88,14 @@ class PersonneManager{
 		return $req->fetchColumn();
 	}
 
+	public function getLogin($per_login){
+		$req=$this->db->prepare('SELECT per_nom FROM personne WHERE per_login=:per_login');
+		$req->bindValue(':per_login', $per_login);
+		$req->execute();
+
+		$personne=$req->fetch();
+		$req->closeCursor();
+		return $personne;
+	}
+
 }

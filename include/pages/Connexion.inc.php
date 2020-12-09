@@ -5,10 +5,10 @@
 <?php if (!isset($_POST["nomUtilisateur"]) || !isset($_POST["mdp"]) || !isset($_POST["nombre"])) : ?>
   <form action="#" method="POST">
     <label for="nomUtilisateur">Nom d'utilisateur: </label><br>
-    <input type="text" name="nomUtilisateur" required><br>
+    <input id="nomUtilisateur" type="text" name="nomUtilisateur" required><br>
 
     <label for="mdp">Mot de passe: </label><br>
-    <input type="password" name="mdp" required><br>
+    <input id="mdp" type="password" name="mdp" required><br>
 
     <?php $nombre1=rand(1,9); $nombre2=rand(1,9); $_SESSION["nombre"]=$nombre1+$nombre2;?>
 

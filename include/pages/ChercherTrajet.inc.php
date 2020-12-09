@@ -13,7 +13,7 @@ include_once("include/functions.inc.php");
     <form id="recherche" action="#" method="post">
       <label for="ville_depart">Ville de départ : </label>
       <?php $recherche=$proposeManager->getListeVilleDepartDeLaRecherche();?>
-      <select name="ville_depart" onChange='javascript:document.getElementById("recherche").submit()';>
+      <select id="ville_depart" name="ville_depart" onChange='javascript:document.getElementById("recherche").submit()'>
           <option value="0">Choisissez</option>
         <?php foreach ($recherche as $ville): ?>
           <option value="<?php echo $ville->getVilNum(); ?>"><?php echo $ville->getVilNom(); ?></option>
@@ -29,10 +29,10 @@ include_once("include/functions.inc.php");
         <p>Ville de départ : <?php echo $villeManager->getVil($_POST["ville_depart"]); ?></p><br>
 
         <label for="date_depart">Date de départ : </label>
-        <input type="date" name="date_depart" value="<?php $dateDepart=date("Y-m-d"); echo $dateDepart; ?>"><br>
+        <input id="date_depart" type="date" name="date_depart" value="<?php $dateDepart=date("Y-m-d"); echo $dateDepart; ?>"><br>
 
         <label for="heure">A partir de : </label>
-        <select name="heure">
+        <select id="heure" name="heure">
           <?php for($i=0; $i < 24; $i++): ?>
             <option value="<?php echo $i; ?>"><?php echo $i; ?>h</option>
           <?php endfor; ?>
@@ -41,7 +41,7 @@ include_once("include/functions.inc.php");
 
       <div class="droite">
         <label for="arrivee">Ville d'arrivée : </label>
-        <select name="arrivee">
+        <select id="arrivee" name="arrivee">
           <?php $villes=$proposeManager->getListeVilleArrivee($_POST["ville_depart"]); ?>
           <?php foreach ($villes as $ville): ?>
             <option value="<?php echo $ville->getVilNum(); ?>"><?php echo $ville->getVilNom(); ?></option>
@@ -49,7 +49,7 @@ include_once("include/functions.inc.php");
         </select><br>
 
         <label for="precision">Précision : </label>
-        <select name="precision">
+        <select id="precision" name="precision">
             <option value="0">Ce jour</option>
           <?php for ($i=1;$i<=3;$i++) : ?>
             <option value="<?php echo $i; ?>"><?php echo "+/- ".$i." jour(s)"; ?></option>

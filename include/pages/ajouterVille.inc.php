@@ -1,4 +1,5 @@
 <h1>Ajouter une ville</h1>
+
 <?php
   if (empty($_POST["ville_nom"])) {?>
     <form action="#" method="post">
