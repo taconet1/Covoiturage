@@ -1,6 +1,6 @@
 <h1>Supprimer une personne</h1>
 
-<?php if(empty($_POST["personneSupp"])){ ?>
+<?php if(empty($_POST["personneSupp"])&& empty($_POST['go'])){ ?>
   <form action="#" method="post">
     <label for="personneSupp"> Nom de la personne : </label>
     <select id="personneSupp" name="personneSupp">
@@ -10,18 +10,25 @@
         <option value="<?php echo $personne->getPerNum();?>"> <?php echo $personne->getPerNom()." ".$personne->getPerPrenom() ?> </option>
       <?php  }?>
     </select>
-    <input type="submit" value="Valider">
-
+    <input type="submit" name="valider" value="Valider">
   </form>
-<?php }else{
-   if(null!=$personneManager->getEtudiant($_POST["personneSupp"])):
-     $etudiantManager->supprimer($_POST["personneSupp"]);
-   endif;
-   if(null!=$personneManager->getSalarie($_POST["personneSupp"])):
-     $salarieManager->supprimer($_POST["personneSupp"]);
-   endif;
-   $personneManager->supprimerPropose($_POST["personneSupp"]);
-   $personneManager->supprimerAvis($_POST["personneSupp"]);
-   $personneManager->supprimerPersonne($_POST["personneSupp"]);
+<?php }else
+if(!empty($_POST["personneSupp"]) && isset($_POST['valider']) && $_POST['valider']=='Valider'){ ?>
+  Veuillez confirmer votre suppression
+  <form action="#" method="post">
+  <input type="submit" name="go" value="Valider">
+  </form>
+  <?php $_SESSION["personneSupp"]=$_POST["personneSupp"];
+}else{
 
-} ?>
+    if(null!=$personneManager->getEtudiant($_SESSION["personneSupp"])):
+      $personneManager->supprimerEtudiant($_SESSION["personneSupp"]);
+    endif;
+    if(null!=$personneManager->getSalarie($_SESSION["personneSupp"])):
+      $personneManager->supprimerSalarie($_SESSION["personneSupp"]);
+    endif;
+    $personneManager->supprimerPropose($_SESSION["personneSupp"]);
+    $personneManager->supprimerAvis($_SESSION["personneSupp"]);
+    $personneManager->supprimerPersonne($_SESSION["personneSupp"]);
+  }
+ ?>

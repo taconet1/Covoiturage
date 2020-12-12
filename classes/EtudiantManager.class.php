@@ -29,9 +29,5 @@ class EtudiantManager{
 		return $req->execute();
 	}
 
-	public function supprimer($etudiant){
-    $req=$this->db->prepare('DELETE FROM salarie WHERE per_num = '.$etudiant);
-    $req->execute();
-  }
 }
 ?>

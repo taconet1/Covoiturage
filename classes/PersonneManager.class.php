@@ -97,16 +97,6 @@ class PersonneManager{
 		$req->closeCursor();
 		return $personne;
 	}
-	public function supprimerPersonne($personne){
-		$req=$this->db->prepare('DELETE FROM personne WHERE per_num = '.$personne);
-    $req->execute();
-	}
-	public function supprimerAvis($personne){
-    $req=$this->db->prepare('DELETE FROM avis WHERE per_num = '.$personne);
-    $req->execute();
-  }
-
-
 	public function getDetailPersonneById($id){
 		$req=$this->db->prepare('SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne WHERE per_num=:id');
 		$req->bindValue(':id', $id);
@@ -146,8 +136,29 @@ class PersonneManager{
 		return $req->execute();
 }
 
+	public function supprimerPersonne($personne){
+		$req=$this->db->prepare('DELETE FROM personne WHERE per_num = '.$personne);
+    $req->execute();
+	}
+	public function supprimerAvis($personne){
+    $req=$this->db->prepare('DELETE FROM avis WHERE per_num ='.$personne);
+		$req2=$this->db->prepare('DELETE FROM avis WHERE per_per_num ='.$personne);
+    $req->execute();
+		$req2->execute();
+  }
+
 	public function supprimerPropose($personne){
 		$req=$this->db->prepare('DELETE FROM propose WHERE per_num = '.$personne);
+		$req->execute();
+	}
+
+	public function supprimerSalarie($salarie){
+    $req=$this->db->prepare('DELETE FROM salarie WHERE per_num = '.$salarie);
+    $req->execute();
+  }
+
+	public function supprimerEtudiant($etudiant){
+		$req=$this->db->prepare('DELETE FROM etudiant WHERE per_num = '.$etudiant);
 		$req->execute();
 	}
 }

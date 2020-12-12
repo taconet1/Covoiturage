@@ -26,12 +26,6 @@ class SalarieManager{
     $req->bindValue(':fon_num', $salarie->getFonNum());
     $req->bindValue(':per_num', $salarie->getPerNum());
     return $req->execute();
-    
-  }
-
-  public function supprimer($salarie){
-    $req=$this->db->prepare('DELETE FROM salarie WHERE per_num = '.$salarie);
-    $req->execute();
   }
 }
 ?>
