@@ -20,7 +20,7 @@
 		</ul>
 
 		<p><img src="image/trajet.png" class="imagMenu" alt="Trajet"/>Trajet</p>
-		<?php if (isset($_SESSION["nomUtilisateur"])): ?>
+		<?php if (isset($_SESSION["loginUtilisateur"])): ?>
 			<ul>
 				<li><a href="index.php?page=9">Proposer</a></li>
 				<li><a href="index.php?page=10">Rechercher</a></li>
