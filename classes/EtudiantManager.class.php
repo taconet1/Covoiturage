@@ -13,5 +13,9 @@ class EtudiantManager{
 		$req->bindValue(':div_num',$etudiant->getDivNum());
 		return $req->execute();
 	}
+	public function supprimer($etudiant){
+    $req=$this->db->prepare('DELETE FROM salarie WHERE per_num = '.$etudiant);
+    $req->execute();
+  }
 }
 ?>

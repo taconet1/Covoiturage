@@ -97,5 +97,17 @@ class PersonneManager{
 		$req->closeCursor();
 		return $personne;
 	}
+	public function supprimerPersonne($personne){
+		$req=$this->db->prepare('DELETE FROM personne WHERE per_num = '.$personne);
+    $req->execute();
+	}
+	public function supprimerAvis($personne){
+    $req=$this->db->prepare('DELETE FROM avis WHERE per_num = '.$personne);
+    $req->execute();
+  }
 
+	public function supprimerPropose($personne){
+		$req=$this->db->prepare('DELETE FROM propose WHERE per_num = '.$personne);
+		$req->execute();
+	}
 }
