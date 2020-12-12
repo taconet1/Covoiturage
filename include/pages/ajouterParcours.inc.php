@@ -1,44 +1,38 @@
 <h1>Ajouter un parcours </h1>
+
 <?php
-if (empty($_POST["kilometre"])){//premier appel ?>
+if (empty($_POST["par_km"])) {?>
+  <form action="#" method="POST">
+      <label for="vil_num1">Ville 1 : </label>
+      <select id="vil_num1" name="vil_num1">
+        <?php $villes=$villeManager->getAllVille(); ?>
+        <?php foreach ($villes as $ville): ?>
+          <option value="<?php echo $ville->getVilNum();?>"> <?php echo $ville->getVilNom() ?> </option>
+        <?php endforeach; ?>
+      </select>
 
-<form name="info" action="index.php?page=5" method="POST">
-    <label for="ville1">Ville 1 : </label>
-    <select id="ville1" name="ville1">
-      <?php
-      $villes=$villeManager->getAllVille();
-      foreach ($villes as $ville){ ?>
-      <option value="<?php echo $ville->getVilNum();?>"> <?php echo $ville->getVilNom() ?> </option>
-      <?php } ?>
-    </select>
+      <label for="vil_num2">Ville 2 : </label>
+      <select id="vil_num2" name="vil_num2">
+        <?php foreach ($villes as $ville): ?>
+          <option value="<?php echo $ville->getVilNum();?>"> <?php echo $ville->getVilNom() ?> </option>
+        <?php endforeach; ?>
+      </select>
 
-    <label for="ville2">Ville 2 : </label>
-    <select id="ville2" name="ville2">
-      <?php
-      foreach ($villes as $ville){ ?>
-        <option value="<?php echo $ville->getVilNum();?>"> <?php echo $ville->getVilNom() ?> </option>
-      <?php } ?>
-    </select>
+      <label for="par_km">Nombres de kilometre(s) : </label>
+      <input id="par_km" type="number" name="par_km" required><br><br>
 
-    <label for="kilometre">Nombres de kilometre(s) : </label>
-    <input id="kilometre" type="number" name="kilometre" ><br><br>
-
-    <input type="submit" value="Valider">
-
-</form>
+      <input type="submit" value="Valider">
+  </form>
 <?php
-}
-else {
-  $parcoursExiste=$parcoursManager->existe($_POST["ville1"], $_POST["ville2"]);
-
+}else {
+  $parcoursExiste=$parcoursManager->existe($_POST["vil_num1"], $_POST["vil_num2"]);
   if($parcoursExiste==true){?>
     <img src="image/erreur.png" alt="Valid">Le parcours existe déjà
-  <?php }
-  else {
+  <?php
+  }else {
     $parcours = new Parcours($_POST);
-    //on appelle la méthode add en lui passant un objet client
-    $ajoutSucces=$parcoursManager->add($parcours);
-    if ($ajoutSucces==true){ //retour contient le nombre de lignes affectées?>
+    $ajoutSucces=$parcoursManager->ajouter($parcours);
+    if ($ajoutSucces==true){ ?>
       <img src="image/valid.png" alt="Valid"> Le parcours a été ajoutée
     <?php
     }

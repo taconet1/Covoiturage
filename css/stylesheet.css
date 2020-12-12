@@ -293,3 +293,8 @@ td .nomCovoit {
 	font-size: 30px;
 	font-weight: bold;
 }
+
+.errMessage {
+	font-weight: normal;
+	color: red;
+}

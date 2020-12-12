@@ -1,4 +1,5 @@
 <?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,12 +24,12 @@
 			</div>
 			</div>
 			<div id="connect">
-        <?php if (!isset($_SESSION["nomUtilisateur"])): ?>
+        <?php if (!isset($_SESSION['loginUtilisateur'])): ?>
           <a href="index.php?page=11">Connexion</a>
         <?php endif; ?>
-        <?php if (isset($_SESSION["nomUtilisateur"])): ?>
-          Utilisateur : <?php echo $_SESSION["nomUtilisateur"]; ?>
+        <?php if (isset($_SESSION['loginUtilisateur'])): ?>
+          Utilisateur : <?php echo $_SESSION['loginUtilisateur']; ?>
           <a href="index.php?page=12">Déconnexion</a>
         <?php endif; ?>
-      </div>
+			</div>
 	</div>

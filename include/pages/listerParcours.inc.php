@@ -1,12 +1,6 @@
 <h1> Liste des parcours proposés</h1>
 
-<?php
-$total=$parcoursManager->nombre();
-if ($total == 1) {?>
-  Actuellement <?php echo $total?> parcours est enregistré<br><br>
-<?php }else{ ?>
-  Actuellement <?php echo $total?> parcours sont enregistrés<br><br>
-<?php }?>
+Actuellement <?php echo $parcoursManager->getNombreParcours();?> parcour(s) est/sont enregistré(s)<br><br>
 
 <table>
   <thead>
@@ -19,13 +13,13 @@ if ($total == 1) {?>
   </thead>
 
   <tbody>
-  <?php $parcours=$parcoursManager->getAllParcours(); ?>
-  <?php foreach ($parcours as $par): ?>
+  <?php $listeParcours=$parcoursManager->getAllParcours(); ?>
+  <?php foreach ($listeParcours as $parcours): ?>
     <tr>
-      <td><?php echo $par->getNumero();?></td>
-      <td><?php echo $par->getVille1();?></td>
-      <td><?php echo $par->getVille2();?></td>
-      <td><?php echo $par->getKilometre();?></td>
+      <td><?php echo $parcours->getParNum();?></td>
+      <td><?php echo $parcours->getVilNum1();?></td>
+      <td><?php echo $parcours->getVilNum2();?></td>
+      <td><?php echo $parcours->getParKm();?></td>
     </tr>
   <?php endforeach; ?>
   </tbody>

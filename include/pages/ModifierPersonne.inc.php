@@ -27,7 +27,17 @@
 <?php if (empty($_GET["id"])): ?>
 <?php $listePersonnes = $personneManager->getAllPersonne();?>
   <table>
-    <thead><tr> <th></th><th>Numéro</th><th>Nom</th><th>Prénom</th><th>Téléphone</th><th>Email</th><th>Login</th> </tr></thead>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Numéro</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Téléphone</th>
+        <th>Email</th>
+        <th>Login</th>
+      </tr>
+    </thead>
 
     <tbody>
     <?php foreach ($listePersonnes as $personne): ?>

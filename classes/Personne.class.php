@@ -1,5 +1,4 @@
 <?php
-include("include/functions.inc.php");
 
 class Personne{
 	protected $per_num;

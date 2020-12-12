@@ -6,25 +6,26 @@ class VilleManager{
 		$this->db = $db;
 	}
 
-	public function ajouter($ville){
+	public function ajouter($vil_nom){
 		$req=$this->db->prepare('INSERT INTO ville(vil_nom) VALUES(:vil_nom);');
-		$req->bindValue(':vil_nom',$ville);
-		$res=$req->execute();
-		return $res;
+		$req->bindValue(':vil_nom',$vil_nom);
+		return $req->execute();
 	}
 
-	public function existe($ville){
-		$req = $this->db->prepare('SELECT vil_nom FROM ville WHERE vil_nom=?');
-		$req->bindValue(1,$ville,PDO::PARAM_STR);
+	public function existe($vil_nom){
+		$req=$this->db->prepare('SELECT vil_nom FROM ville WHERE vil_nom=?');
+		$req->bindValue(1,$vil_nom,PDO::PARAM_STR);
 		$req->execute();
-		return $req->rowCount();
+		$resultat=$req->fetch();
+		$req->closeCursor();
+		return $resultat;
 	}
 
 	public function getNombreVille(){
-		$req=$this->db->query('SELECT COUNT(vil_num) FROM ville');
-		$res=$req->fetchColumn();
+		$req=$this->db->query('SELECT COUNT(vil_num) AS nombreVille FROM ville');
+		$resultat=$req->fetch(PDO::FETCH_ASSOC);
 		$req->closeCursor();
-		return $res;
+		return $resultat['nombreVille'];
 	}
 
 	public function getAllVille(){

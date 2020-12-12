@@ -1,6 +1,6 @@
 <h1>Liste des villes</h1>
 
-Actuellement <?php echo $villeManager->getNombreVille();?> villes sont enregistrées<br><br>
+Actuellement <?php echo $villeManager->getNombreVille();?> ville(s) est/sont enregistrée(s)<br><br>
 
 <table>
   <thead>
@@ -19,5 +19,4 @@ Actuellement <?php echo $villeManager->getNombreVille();?> villes sont enregistr
     </tr>
   <?php endforeach; ?>
   </tbody>
-
 </table>

@@ -1,51 +1,35 @@
 <?php
 class Parcours{
-	private $numero;
-	private $ville1;
-	private $ville2;
-	private $kilometre;
+	private $par_num;
+	private $vil_num1;
+	private $vil_num2;
+	private $par_km;
+
 	public function __construct($valeurs = array()){
 		if (!empty($valeurs))
-				//print_r ($valeurs);
 				 $this->affecte($valeurs);
 	}
+
 	public function affecte($donnees){
 				foreach ($donnees as $attribut => $valeur){
 						switch ($attribut){
-								case 'par_num': $this->setNumero($valeur); break;
-								case 'ville1': $this->setVille1($valeur); break;
-								case 'ville2': $this->setVille2($valeur); break;
-								case 'kilometre': $this->setKilometre($valeur); break;
+								case 'par_num': $this->setParNum($valeur); break;
+								case 'vil_num1': $this->setVilNum1($valeur); break;
+								case 'vil_num2': $this->setVilNum2($valeur); break;
+								case 'par_km': $this->setParKm($valeur); break;
 						}
 				}
 		}
 
-	public function getNumero(){
-		return $this->numero;
-	}
-	public function setNumero($numero) {
-	       $this->numero= $numero;
-  }
+	public function getParNum(){return $this->par_num;}
+	public function setParNum($par_num) {$this->par_num=$par_num;}
 
-	public function getVille1(){
-		return $this->ville1;
-	}
-	public function setVille1 ($ville1) {
-	  $this->ville1= $ville1;
-  }
-	public function getVille2(){
-		return $this->ville2;
-	}
-	public function setVille2 ($ville2) {
-		$this->ville2=$ville2;
-  }
-	public function getKilometre(){
-		return $this->kilometre;
-	}
-	public function setKilometre ($kilometre) {
-		$this->kilometre=$kilometre;
-  }
+	public function getVilNum1(){return $this->vil_num1;}
+	public function setVilNum1($vil_num1) {$this->vil_num1=$vil_num1;}
 
+	public function getVilNum2(){return $this->vil_num2;}
+	public function setVilNum2($vil_num2) {$this->vil_num2=$vil_num2;}
 
-
+	public function getParKm(){return $this->par_km;}
+	public function setParKm($par_km) {$this->par_km=$par_km;}
 }
