@@ -181,7 +181,7 @@ input, select {
 	margin: 3px;
 }
 
-input[type=submit] {
+input[type=submit], input[type=reset] {
 		background-color: black;
 		color: white;
 		border: 1px solid grey;

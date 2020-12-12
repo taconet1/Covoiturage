@@ -14,7 +14,7 @@
       </thead>
 
       <tbody>
-      <?php foreach ($listePersonnes as $personne): $i=0;?>
+      <?php foreach ($listePersonnes as $personne): ?>
         <tr>
           <td>
             <a href="index.php?page=2&id=<?php echo $personne->getPerNum(); ?>" >
@@ -33,9 +33,10 @@
 
 <?php if (!empty($_GET["id"])):?>
   <?php if (!empty($personneManager->getEtudiant($_GET["id"]))):
-    $personne=$personneManager->getEtudiant($_GET["id"]);?>
+        $personne=$personneManager->getEtudiant($_GET["id"]);?>
 
   <h1>Détail sur l'étudiant <?php echo $personne->getPerNom(); ?></h1>
+  
   <table>
     <thead>
       <tr>

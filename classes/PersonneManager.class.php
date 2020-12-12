@@ -38,7 +38,7 @@ class PersonneManager{
 	}
 
 	public function getEtudiant($id){
-		$req=$this->db->prepare("SELECT per_nom, per_prenom, per_mail, per_tel, dep_num
+		$req=$this->db->prepare("SELECT p.per_num, per_nom, per_prenom, per_mail, per_tel, dep_num, div_num, per_login, per_pwd
 														 FROM personne p JOIN etudiant e ON p.per_num=e.per_num WHERE e.per_num=:id");
 		$req->bindValue(':id',$id);
 		$req->execute();
@@ -51,7 +51,7 @@ class PersonneManager{
 	}
 
 	public function getSalarie($id){
-		$req=$this->db->prepare('SELECT per_nom,per_prenom,per_mail,per_tel,sal_telprof,fon_num
+		$req=$this->db->prepare('SELECT p.per_num, per_nom, per_prenom, per_mail, per_tel, sal_telprof, fon_num
 														 FROM personne p JOIN salarie s ON p.per_num=s.per_num WHERE s.per_num=:id');
 		$req->bindValue(':id',$id);
 		$req->execute();
@@ -98,4 +98,42 @@ class PersonneManager{
 		return $personne;
 	}
 
+	public function getDetailPersonneById($id){
+		$req=$this->db->prepare('SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne WHERE per_num=:id');
+		$req->bindValue(':id', $id);
+		$req->execute();
+
+		$personne=new Personne($req->fetch(PDO::FETCH_OBJ));
+		$req->closeCursor();
+		return $personne;
+	}
+
+	public function getMdpById($id){
+		$req=$this->db->prepare('SELECT per_pwd FROM personne WHERE per_num=:id');
+		$req->bindValue(':id',$id);
+		$req->execute();
+
+		$res=$req->fetchColumn();
+		$req->closeCursor();
+		return $res;
+	}
+
+	public function modifierDetails($personne) {
+		$req=$this->db->prepare('UPDATE personne SET per_nom=:per_nom, per_prenom=:per_prenom, per_tel=:per_tel, per_mail=:per_mail, per_login=:per_login, per_pwd=:per_pwd WHERE per_num=:per_num');
+
+		$req->bindValue(':per_nom',$personne->getPerNom());
+		$req->bindValue(':per_prenom',$personne->getPerPrenom());
+		$req->bindValue(':per_tel',$personne->getPerTel());
+		$req->bindValue(':per_mail',$personne->getPerMail());
+		$req->bindValue(':per_login',$personne->getPerLogin());
+		if ($personne->getPerPwd()!="") {
+			$req->bindValue(':per_pwd',$personne->getPerPwd());
+		}else {
+			$mdp=$this->getMdpById($personne->getPerNum());
+			$req->bindValue(':per_pwd',$mdp);
+		}
+		$req->bindValue(':per_num',$personne->getPerNum());
+
+		return $req->execute();
+	}
 }
