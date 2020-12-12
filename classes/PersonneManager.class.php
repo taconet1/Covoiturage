@@ -97,6 +97,15 @@ class PersonneManager{
 		$req->closeCursor();
 		return $personne;
 	}
+	public function supprimerPersonne($personne){
+		$req=$this->db->prepare('DELETE FROM personne WHERE per_num = '.$personne);
+    $req->execute();
+	}
+	public function supprimerAvis($personne){
+    $req=$this->db->prepare('DELETE FROM avis WHERE per_num = '.$personne);
+    $req->execute();
+  }
+
 
 	public function getDetailPersonneById($id){
 		$req=$this->db->prepare('SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne WHERE per_num=:id');
@@ -135,5 +144,11 @@ class PersonneManager{
 		$req->bindValue(':per_num',$personne->getPerNum());
 
 		return $req->execute();
+}
+
+	public function supprimerPropose($personne){
+		$req=$this->db->prepare('DELETE FROM propose WHERE per_num = '.$personne);
+		$req->execute();
+
 	}
 }
