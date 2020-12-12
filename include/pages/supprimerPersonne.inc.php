@@ -7,7 +7,7 @@
       <?php
       $personnes=$personneManager->getAllPersonne();
       foreach ($personnes as $personne) {?>
-        <option value="<?php echo $personne->getPerNum();?>"> <?php echo $personne->getPerNom()." ".$personne->getPerPrenom() ?> </option>
+        <option value="<?php echo $personne->getPerNum();?>"> <?php echo $personne->getPerNum().' '.$personne->getPerNom().' '.$personne->getPerPrenom() ?> </option>
       <?php  }?>
     </select>
     <input type="submit" name="valider" value="Valider">
