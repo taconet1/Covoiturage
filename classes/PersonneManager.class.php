@@ -28,7 +28,7 @@ class PersonneManager{
 
 	public function getAllPersonne(){
 		$listePersonnes = array();
-		$req=$this->db->prepare('SELECT per_num,per_nom,per_prenom FROM personne');
+		$req=$this->db->prepare('SELECT per_num,per_nom,per_prenom,per_tel,per_mail,per_login FROM personne');
 		$req->execute();
 		while ($personne = $req->fetch(PDO::FETCH_OBJ)) {
 			$listePersonnes[]=new Personne($personne);
@@ -149,6 +149,5 @@ class PersonneManager{
 	public function supprimerPropose($personne){
 		$req=$this->db->prepare('DELETE FROM propose WHERE per_num = '.$personne);
 		$req->execute();
-
 	}
 }

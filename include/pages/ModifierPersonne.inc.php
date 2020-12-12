@@ -27,7 +27,7 @@
 <?php if (empty($_GET["id"])): ?>
 <?php $listePersonnes = $personneManager->getAllPersonne();?>
   <table>
-    <thead><tr><th></th><th>Numéro</th><th>Nom</th><th>Prénom</th></tr></thead>
+    <thead><tr> <th></th><th>Numéro</th><th>Nom</th><th>Prénom</th><th>Téléphone</th><th>Email</th><th>Login</th> </tr></thead>
 
     <tbody>
     <?php foreach ($listePersonnes as $personne): ?>
@@ -35,11 +35,12 @@
         <td>
           <a href="index.php?page=3&id=<?php echo $personne->getPerNum(); ?>" ><img src="image/modifier.png" alt="Modifier"></a>
         </td>
-        <td>
-          <?php echo $personne->getPerNum(); ?>
-        </td>
+        <td><?php echo $personne->getPerNum(); ?></td>
         <td><?php echo $personne->getPerNom(); ?></td>
         <td><?php echo $personne->getPerPrenom(); ?></td>
+        <td><?php echo $personne->getPerTel(); ?></td>
+        <td><?php echo $personne->getPerMail(); ?></td>
+        <td><?php echo $personne->getPerLogin(); ?></td>
       </tr>
     <?php endforeach; ?>
     </tbody>

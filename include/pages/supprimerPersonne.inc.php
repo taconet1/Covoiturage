@@ -15,7 +15,7 @@
   </form>
 <?php }else{
    if(null!=$personneManager->getEtudiant($_POST["personneSupp"])):
-     $etudiantManager.supprimer($_POST["personneSupp"]);
+     $etudiantManager->supprimer($_POST["personneSupp"]);
    endif;
    if(null!=$personneManager->getSalarie($_POST["personneSupp"])):
      $salarieManager->supprimer($_POST["personneSupp"]);
@@ -23,5 +23,5 @@
    $personneManager->supprimerPropose($_POST["personneSupp"]);
    $personneManager->supprimerAvis($_POST["personneSupp"]);
    $personneManager->supprimerPersonne($_POST["personneSupp"]);
-   
+
 } ?>
