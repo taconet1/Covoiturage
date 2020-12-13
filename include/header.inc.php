@@ -5,6 +5,7 @@
 
 <head>
 <meta charset="utf-8">
+<link rel="icon" type="image/png" href="image/logo.png">
 
 <?php $title = "Bienvenue sur le site de covoiturage de l'IUT.";?>
 <title><?php echo $title ?></title>

@@ -103,5 +103,10 @@ class ProposeManager{
 		$req->closeCursor();
 		return $liste;
 	}
+
+	public function supprimerPropose($personne){
+		$req=$this->db->prepare('DELETE FROM propose WHERE per_num = '.$personne);
+		$req->execute();
+	}
 }
 ?>

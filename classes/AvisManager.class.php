@@ -26,5 +26,12 @@ class AvisManager {
     $req->closeCursor();
     return $res;
   }
+
+  public function supprimerAvis($personne){
+    $req=$this->db->prepare('DELETE FROM avis WHERE per_num ='.$personne);
+    $req2=$this->db->prepare('DELETE FROM avis WHERE per_per_num ='.$personne);
+    $req->execute();
+    $req2->execute();
+  }
 }
 ?>

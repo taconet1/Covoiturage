@@ -38,7 +38,7 @@ class VilleManager{
 		return $listeVilles;
 	}
 
-	public function getVil($id){
+	public function getVille($id){
 		$req=$this->db->prepare('SELECT vil_nom FROM ville WHERE vil_num=?');
 		$req->bindValue(1,$id,PDO::PARAM_INT);
 		$req->execute();

@@ -1,4 +1,4 @@
-<?php if (empty($_GET["id"])): ?>
+<?php if (empty($_GET['id'])): ?>
   <h1>Liste des personnes enregistrées</h1>
 
   Actuellement <?php echo $personneManager->getNombrePersonne(); ?> personnes enregistrées<br><br>
@@ -31,12 +31,10 @@
 <?php endif; ?>
 
 
-<?php if (!empty($_GET["id"])):?>
-  <?php if (!empty($personneManager->getEtudiant($_GET["id"]))):
-        $personne=$personneManager->getEtudiant($_GET["id"]);?>
-
+<?php if (!empty($_GET['id'])):?>
+  <?php if (!empty($etudiantManager->getEtudiant($_GET['id']))): $personne=$etudiantManager->getEtudiant($_GET['id']);?>
   <h1>Détail sur l'étudiant <?php echo $personne->getPerNom(); ?></h1>
-  
+
   <table>
     <thead>
       <tr>
@@ -60,7 +58,7 @@
   </table>
 
   <?php else:
-      $personne=$personneManager->getSalarie($_GET["id"]);?>
+      $personne=$salarieManager->getSalarie($_GET['id']);?>
     <h1>Détail sur le salarié <?php echo $personne->getPerNom(); ?></h1>
     <table>
       <thead>

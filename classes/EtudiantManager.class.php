@@ -17,7 +17,7 @@ class EtudiantManager{
 	public function supprimerById($id) {
     $req=$this->db->prepare('DELETE FROM etudiant WHERE per_num=:per_num');
     $req->bindValue(':per_num',$id);
-    return $req->execute();
+    $req->execute();
   }
 
 	public function modifierDetails($etudiant) {
@@ -25,9 +25,20 @@ class EtudiantManager{
 		$req->bindValue(':dep_num', $etudiant->getDepNum());
 		$req->bindValue(':div_num', $etudiant->getDivNum());
 		$req->bindValue(':per_num', $etudiant->getPerNum());
-		var_dump($etudiant);
 		return $req->execute();
 	}
 
+	public function getEtudiant($id){
+		$req=$this->db->prepare("SELECT p.per_num, per_nom, per_prenom, per_mail, per_tel, dep_num, div_num, per_login, per_pwd
+														 FROM personne p JOIN etudiant e ON p.per_num=e.per_num WHERE e.per_num=:id");
+		$req->bindValue(':id',$id);
+		$req->execute();
+		$etudiant=new Etudiant($req->fetch());
+		if ($etudiant->getPerNom()==null) {
+			$etudiant=null;
+		}
+		$req->closeCursor();
+		return $etudiant;
+	}
 }
 ?>

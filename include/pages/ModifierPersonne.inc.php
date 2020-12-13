@@ -1,10 +1,10 @@
 <h1>Modifier une personne</h1>
 
-<?php if (!empty($_POST["submitEtudiant"]) || !empty($_POST["submitSalarie"])):
+<?php if (!empty($_POST['submitEtudiant']) || !empty($_POST['submitSalarie'])):
   $personneManager->modifierDetails(new Personne($_POST)); ?>
   <?php
-  if ($personneManager->getEtudiant($_SESSION['idModifier'])!=null) {
-    if (!empty($_POST["submitSalarie"])) {
+  if ($etudiantManager->getEtudiant($_SESSION['idModifier'])!=null) {
+    if (!empty($_POST['submitSalarie'])) {
       $etudiantManager->supprimerById($_SESSION['idModifier']);
       $salarieManager->ajouter(new Salarie(array('sal_telprof'=>$_POST['sal_telprof'],'fon_num'=>$_POST['fon_num'],'per_num'=>$_SESSION['idModifier'])));
     }else {
@@ -12,8 +12,8 @@
     }
   }
 
-  if ($personneManager->getEtudiant($_SESSION['idModifier'])==null) {
-    if (!empty($_POST["submitEtudiant"])) {
+  if ($etudiantManager->getEtudiant($_SESSION['idModifier'])==null) {
+    if (!empty($_POST['submitEtudiant'])) {
       $salarieManager->supprimerById($_SESSION['idModifier']);
       $etudiantManager->ajouter(new Etudiant(array('div_num'=>$_POST['div_num'],'dep_num'=>$_POST['dep_num'],'per_num'=>$_SESSION['idModifier'])));
     }else {
@@ -24,7 +24,7 @@
   <img src="image/valid.png" alt="Valider"> Le compte a été bien modifié<br><br>
 <?php endif; ?>
 
-<?php if (empty($_GET["id"])): ?>
+<?php if (empty($_GET['id'])): ?>
 <?php $listePersonnes = $personneManager->getAllPersonne();?>
   <table>
     <thead>
@@ -58,8 +58,8 @@
   </table>
 <?php endif; ?>
 
-<?php if (!empty($_GET["id"]) && empty($_POST["submitModificationDetails"])): ?>
-  <?php $personne = $personneManager->getDetailPersonneById($_GET["id"]); ?>
+<?php if (!empty($_GET['id']) && empty($_POST['submitModificationDetails'])): ?>
+  <?php $personne = $personneManager->getDetailPersonneById($_GET['id']); ?>
   <form name="formulaire_personne" action="#" method="post">
     <div id="ajouter_personne">
 
@@ -92,12 +92,12 @@
 
     <span>Catégorie : </span>
 
-    <?php if ($personneManager->getEtudiant($_GET["id"])!=null) {
-      $checkEtudiant = "checked";
-      $checkSalarie = "";
+    <?php if ($etudiantManager->getEtudiant($_GET['id'])!=null) {
+      $checkEtudiant = 'checked';
+      $checkSalarie = '';
     }else {
-      $checkEtudiant = "";
-      $checkSalarie = "checked";
+      $checkEtudiant = '';
+      $checkSalarie = 'checked';
     } ?>
 
     <input type="radio" id="etudiant" name="personne" value="etudiant" required <?php echo $checkEtudiant; ?>>
@@ -111,29 +111,29 @@
   </form>
 <?php endif; ?>
 
-<?php if (!empty($_POST["submitModificationDetails"])): ?>
+<?php if (!empty($_POST['submitModificationDetails'])): ?>
   <?php
   $personneModifie=new Personne($_POST);
-  $personneModifie->setPerNum($_GET["id"]);
-  if ($_POST["per_pwd"]=="") {
-    $personneModifie->setPerPwd("");
+  $personneModifie->setPerNum($_GET['id']);
+  if ($_POST['per_pwd']=='') {
+    $personneModifie->setPerPwd('');
   }
   $personneManager->modifierDetails($personneModifie);
   ?>
 <?php endif; ?>
 
-<?php if (!empty($_POST["personne"]) && $_POST["personne"]=="etudiant"): ?>
+<?php if (!empty($_POST['personne']) && $_POST['personne']=='etudiant'): ?>
   <form action="index.php?page=3" method="post">
-    <?php  $etudiantExistant=$personneManager->getEtudiant($_GET["id"]); $_SESSION['idModifier']=$_GET['id'];?>
+    <?php  $etudiantExistant=$etudiantManager->getEtudiant($_GET['id']); $_SESSION['idModifier']=$_GET['id'];?>
     <label for="div_num">Année : </label>
     <select id="div_num" name="div_num">
       <?php $divisions=$divisionManager->getAllDivision();
       foreach ($divisions as $division ): ?>
         <?php
         if ($etudiantExistant!=null && $division->getDivNum()==$etudiantExistant->getDivNum()){
-          $default="selected";
+          $default='selected';
         } else {
-          $default="";
+          $default='';
         }?>
         <option value="<?php echo $division->getDivNum(); ?>" <?php echo $default; ?>><?php echo $division->getDivNom(); ?></option>
       <?php endforeach; ?>
@@ -149,7 +149,7 @@
         } else {
           $default="";
         }?>
-        <option value="<?php echo $departement->getDepNum(); ?>" <?php echo $default; ?>><?php echo $departement->getDepNom();?> (<?php echo $villeManager->getVil($departement->getVilNum()); ?>)</option>
+        <option value="<?php echo $departement->getDepNum(); ?>" <?php echo $default; ?>><?php echo $departement->getDepNom();?> (<?php echo $villeManager->getVille($departement->getVilNum()); ?>)</option>
       <?php endforeach; ?>
     </select><br><br>
 
@@ -157,9 +157,9 @@
   </form>
 <?php endif; ?>
 
-<?php if (!empty($_POST["personne"]) && $_POST["personne"]=="personnel"): ?>
+<?php if (!empty($_POST['personne']) && $_POST['personne']=='personnel'): ?>
   <form action="index.php?page=3" method="post">
-    <?php  $salarieExistant=$personneManager->getSalarie($_GET["id"]); $_SESSION['idModifier']=$_GET['id'];?>
+    <?php  $salarieExistant=$salarieManager->getSalarie($_GET['id']); $_SESSION['idModifier']=$_GET['id'];?>
     <label for="sal_telprof">Téléphone professionnel : </label>
     <?php if ($salarieExistant!=null) {
       $value=$salarieExistant->getTelProf();
@@ -172,9 +172,9 @@
       foreach ($fonctions as $fonction): ?>
         <?php
         if ($salarieExistant!=null && $fonction->getFonNum()==$salarieExistant->getFonNum()){
-          $default="selected";
+          $default='selected';
         } else {
-          $default="";
+          $default='';
         }?>
         <option value="<?php echo $fonction->getFonNum(); ?>" <?php echo $default; ?>><?php echo $fonction->getFonLibelle(); ?></option>
       <?php endforeach; ?>

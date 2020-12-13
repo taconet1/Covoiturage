@@ -17,8 +17,8 @@ Actuellement <?php echo $parcoursManager->getNombreParcours();?> parcour(s) est/
   <?php foreach ($listeParcours as $parcours): ?>
     <tr>
       <td><?php echo $parcours->getParNum();?></td>
-      <td><?php echo $parcours->getVilNum1();?></td>
-      <td><?php echo $parcours->getVilNum2();?></td>
+      <td><?php echo $villeManager->getVille($parcours->getVilNum1());?></td>
+      <td><?php echo $villeManager->getVille($parcours->getVilNum2());?></td>
       <td><?php echo $parcours->getParKm();?></td>
     </tr>
   <?php endforeach; ?>
