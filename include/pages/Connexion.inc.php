@@ -10,8 +10,8 @@
 
     <?php $nombre1=rand(1,9); $nombre2=rand(1,9); $_SESSION['resultatSomme']=$nombre1+$nombre2;?>
 
-    <img class="nombre" src="image/nb/<?php echo $nombre1; ?>" alt="nombre1"><span class="operation"> + </span>
-    <img class="nombre" src="image/nb/<?php echo $nombre2; ?>" alt="nombre2"><span class="operation"> = </span><br>
+    <img class="nombre" src="image/nb/<?php echo $nombre1.'.jpg'; ?>" alt="nombre1"><span class="operation"> + </span>
+    <img class="nombre" src="image/nb/<?php echo $nombre2.'.jpg'; ?>" alt="nombre2"><span class="operation"> = </span><br>
     <input type="number" name="sommeNombres" required><br><br>
 
     <input type="submit" value="Valider">
