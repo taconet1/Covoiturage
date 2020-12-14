@@ -1,0 +1,2 @@
+#Tous les fichiers en .php sont écrit en langage PHP
+*.php linguist-language=PHP
