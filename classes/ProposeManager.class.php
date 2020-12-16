@@ -77,9 +77,10 @@ class ProposeManager{
 
 	public function getListeVilleDepartDeLaRecherche(){
 		$liste=array();
-		$req=$this->db->query('SELECT vil_num, vil_nom FROM propose pro JOIN parcours p ON pro.par_num=p.par_num JOIN ville v ON p.vil_num1=v.vil_num
-													 UNION SELECT vil_num, vil_nom FROM propose pro JOIN parcours p ON pro.par_num=p.par_num JOIN ville v ON p.vil_num2=v.vil_num
-													 WHERE pro_sens=0 ORDER BY 2');
+		$req=$this->db->query('SELECT DISTINCT vil_num1 AS vil_num, vil_nom FROM parcours p JOIN ville v ON v.vil_num=p.vil_num1 JOIN propose pr ON pr.par_num = p.par_num WHERE pr.pro_sens = 0
+							   UNION 
+							   SELECT DISTINCT vil_num2 AS vil_num, vil_nom FROM parcours p JOIN ville v ON v.vil_num=p.vil_num2 JOIN propose pr on pr.par_num = p.par_num WHERE pr.pro_sens= 1');
+						
 		while ($ville=$req->fetch(PDO::FETCH_OBJ)) {
 			$liste[]=new Ville($ville);
 		}

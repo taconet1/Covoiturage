@@ -3,10 +3,10 @@
 <?php if (empty($_POST['vil_nom'])): ?>
   <form action="#" method="post">
     <label for="vil_nom">Nom : </label>
-    <input id="vil_nom" name="vil_nom" type="text" pattern="[A-zÀ-ú]*-?[A-zÀ-ú]" required>
+    <input id="vil_nom" name="vil_nom" type="text" required>
     <input type="submit" value="Valider">
   </form>
-<?php else: ?>
+<?php else: $_POST['vil_nom']=ucfirst($_POST['vil_nom']);?>
   <?php if ($villeManager->existe($_POST['vil_nom'])==false): $villeManager->ajouter($_POST['vil_nom']);?>
     <img src="image/valid.png" alt="Valid"> La ville "<span><?php echo $_POST['vil_nom']; ?></span>" a été ajoutée
   <?php else: ?>
